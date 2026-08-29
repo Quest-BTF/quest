@@ -8,9 +8,9 @@ import { evaluateCandidate } from '@/lib/groq';
  * Server action to handle waitlist form submissions.
  *
  * Flow:
- * 1. Validate the incoming form data
+ * 1. Validate the incoming form data (MCQ answers are single letters A–D)
  * 2. Save the candidate to MongoDB with status 'Unsorted'
- * 3. Call the Groq API to evaluate and sort the candidate
+ * 3. Call the Groq API to evaluate (tally + AI) and sort the candidate
  * 4. Update the candidate record with the assigned house and 'Pending Review' status
  * 5. Return the result to the client
  *
@@ -32,15 +32,17 @@ export async function submitCandidate(formData) {
           .filter((s) => s.length > 0)
       : [];
 
-    // Collect answers from form fields named answer_q1, answer_q2, etc.
+    // Collect MCQ answers from form fields named answer_q1, answer_q2, etc.
+    // Each answer should be a single letter: A, B, C, or D
+    const validLetters = ['A', 'B', 'C', 'D'];
     const answers = {};
     for (let i = 1; i <= 5; i++) {
       const key = `q${i}`;
-      const value = formData.get(`answer_${key}`)?.toString().trim();
-      if (!value) {
+      const value = formData.get(`answer_${key}`)?.toString().trim().toUpperCase();
+      if (!value || !validLetters.includes(value)) {
         return {
           success: false,
-          error: `Please answer all behavioral questions (question ${i} is missing).`,
+          error: `Please answer all questions (question ${i} is missing or invalid).`,
         };
       }
       answers[key] = value;
@@ -81,7 +83,7 @@ export async function submitCandidate(formData) {
       status: 'Unsorted',
     });
 
-    // ── 3. Call Groq API for AI evaluation ──────────────────────────────
+    // ── 3. Call Groq API for tally + AI evaluation ──────────────────────
     let sortingResult;
     try {
       sortingResult = await evaluateCandidate({
@@ -101,7 +103,7 @@ export async function submitCandidate(formData) {
       };
     }
 
-    // ── 4. Update candidate with AI result ─────────────────────────────
+    // ── 4. Update candidate with sorting result ─────────────────────────
     candidate.house = sortingResult.house;
     candidate.aiReasoning = sortingResult.reasoning;
     candidate.status = 'Pending Review';
