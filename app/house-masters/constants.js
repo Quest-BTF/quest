@@ -1,56 +1,72 @@
-export const QUESTIONS = {
-  q1: {
-    title: "What Can the Council Count On?",
-    subtitle:
-      "What is the Council investing in when they hand you the keys to a house? What strength can the council count on from you?",
-    labelPrefix: "THE COMMITMENT",
+/* ═══════════════════════════════════════════════════════════════════
+   HOUSE MASTERS — Question Data & Constants
+   ═══════════════════════════════════════════════════════════════════ */
+
+// ── Step 3: The Commitment (form fields) ─────────────────────────
+export const HOURS_OPTIONS = [
+  "3–5 hours",
+  "5–8 hours",
+  "8–12 hours",
+  "12+ hours",
+];
+
+export const DAYS_OF_WEEK = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+
+// ── Step 4: The Council's Questions (multi-sub-question MCQ) ─────
+export const COUNCIL_QUESTIONS = [
+  {
+    key: "cq1",
+    label:
+      "A builder in your house stops shipping and goes quiet. Your first move is to...",
     options: {
-      A: "Relentless drive and fearless decision-making",
-      B: "Deep analytical thinking and meticulous planning",
-      C: "Steady consistency and team-first collaboration",
-      D: "Visionary foresight and unconventional strategy",
-    },
-    followUp: {
-      label: "GIVE A STATEMENT OF NO MORE THAN TWO SENTENCES ON THIS",
-      placeholder: "Briefly explain your choice...",
-      key: "q1_statement",
+      A: "Message them directly and hold them to the plan",
+      B: "Challenge them publicly. A little heat gets people moving.",
+      C: "Ask questions till you understand what actually broke.",
+      D: "Show them the goal differently. Maybe the plan was wrong.",
     },
   },
-  q2: {
-    title: "How You Lead Decides Which House Is Yours.",
-    subtitle:
-      "When things get hard and your house looks to you, how do you lead?",
-    labelPrefix: "THE PHILOSOPHY",
+  {
+    key: "cq2",
+    label: "The trait you respect most in a builder is...",
     options: {
-      A: "I lead from the front — by example and bold action",
-      B: "I lead with knowledge — through data, research, and precision",
-      C: "I lead by building trust — through reliability and endurance",
-      D: "I lead by seeing ahead — through vision and strategic innovation",
-    },
-    followUp: {
-      label: "WHAT TRAIT DO YOU BELIEVE SEPARATES YOU AS A LEADER?",
-      placeholder: "Describe your defining leadership trait...",
-      key: "q2_trait",
+      A: "They show up, grind it out, the work gets done.",
+      B: "They ship before they're told. Totally.",
+      C: "They think before they move and it shows.",
+      D: "The moves they make that nobody sees coming.",
     },
   },
-  q3: {
-    title: "If You Could Drill One Value Into Your House Above All Else...",
-    subtitle:
-      "Every great house is built on a single unshakeable belief. What's yours?",
-    labelPrefix: "THE FOUNDATION",
+  {
+    key: "cq3",
+    label: "Under pressure, your own instinct is to...",
     options: {
-      A: "Courage — the willingness to take risks others won't",
-      B: "Wisdom — the pursuit of deep understanding and mastery",
-      C: "Resilience — the strength to endure and keep building",
-      D: "Vision — the ability to see opportunities others miss",
+      A: "Grind quietly till it's done.",
+      B: "Rally the people around you and push forward together.",
+      C: "Ask questions till you understand what actually broke.",
+      D: "Step back, rethink, and find a smarter path.",
     },
+  },
+];
+
+// ── Step 5: The Deciding Question (single-value picker) ──────────
+export const DECIDING_QUESTION = {
+  title: "If You Could Drill One Value Into Your House Above All Else...",
+  subtitle: "This answer carries the most weight in the Council's decision.",
+  labelPrefix: "THE DECIDING QUESTION",
+  options: {
+    A: "RESOLVE",
+    B: "COURAGE",
+    C: "WISDOM",
+    D: "VISION",
+  },
+  followUp: {
+    label: "WHY THAT ONE?",
+    placeholder: "a sentence or two is plenty",
+    key: "value_reason",
   },
 };
 
-export const QUESTION_KEYS = ["q1", "q2", "q3"];
-
 /**
- * Total steps: 0=Landing, 1=Preamble, 2=Q1(name+why), 3=Q2, 4=Q3, 5=Q4, 6=Review
+ * Total steps: 0=Landing, 1=Preamble, 2=Candidacy, 3=Commitment, 4=Council Questions, 5=Deciding, 6=Review
  */
 export const TOTAL_PAGES = 7;
 

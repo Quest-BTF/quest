@@ -19,9 +19,11 @@ import { HiOutlineLockClosed } from "react-icons/hi";
 import LandingStep from "./components/LandingStep";
 import PreambleStep from "./components/PreambleStep";
 import CandidacyStep from "./components/CandidacyStep";
-import QuestionStep from "./components/QuestionStep";
+import CommitmentStep from "./components/CommitmentStep";
+import CouncilStep from "./components/CouncilStep";
+import DecidingStep from "./components/DecidingStep";
 import ReviewStep from "./components/ReviewStep";
-import { QUESTIONS, QUESTION_KEYS, TOTAL_PAGES } from "./constants";
+import { COUNCIL_QUESTIONS, DECIDING_QUESTION, TOTAL_PAGES } from "./constants";
 
 const HOUSE_ICONS = {
   Ashmoor: <GiSwordBrandish />,
@@ -37,16 +39,27 @@ export default function HouseMastersPage() {
   const [errorMsg, setErrorMsg] = useState("");
   const [availableCount, setAvailableCount] = useState(4);
 
-  // Form data
+  // Form data — Candidacy (step 2)
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [discord, setDiscord] = useState("");
   const [motivation, setMotivation] = useState("");
-  const [answers, setAnswers] = useState({ q1: "", q2: "", q3: "" });
-  const [statements, setStatements] = useState({
-    q1_statement: "",
-    q2_trait: "",
+
+  // Form data — Commitment (step 3)
+  const [hoursPerWeek, setHoursPerWeek] = useState("");
+  const [timezone, setTimezone] = useState("");
+  const [availableDays, setAvailableDays] = useState([]);
+
+  // Form data — Council Questions (step 4)
+  const [councilAnswers, setCouncilAnswers] = useState({
+    cq1: "",
+    cq2: "",
+    cq3: "",
   });
+
+  // Form data — Deciding Question (step 5)
+  const [decidingAnswer, setDecidingAnswer] = useState("");
+  const [decidingReason, setDecidingReason] = useState("");
 
   // ── Check availability on mount ────────────────────────────────
   useEffect(() => {
@@ -71,12 +84,8 @@ export default function HouseMastersPage() {
   }, []);
 
   // ── Answer management ──────────────────────────────────────────
-  function selectAnswer(questionKey, letter) {
-    setAnswers((prev) => ({ ...prev, [questionKey]: letter }));
-  }
-
-  function updateStatement(key, value) {
-    setStatements((prev) => ({ ...prev, [key]: value }));
+  function selectCouncilAnswer(questionKey, letter) {
+    setCouncilAnswers((prev) => ({ ...prev, [questionKey]: letter }));
   }
 
   // ── Validation ─────────────────────────────────────────────────
@@ -86,21 +95,40 @@ export default function HouseMastersPage() {
         return true;
       case 1: // Preamble — always can proceed
         return true;
-      case 2: // Name + email + discord + motivation
-        return name.trim().length > 0 && email.trim().length > 0 && discord.trim().length > 0 && motivation.trim().length > 0;
-      case 3: // Q1
-        return answers.q1 !== "";
-      case 4: // Q2
-        return answers.q2 !== "";
-      case 5: // Q3
-        return answers.q3 !== "";
-      case 6: // Review — all must be filled
+      case 2: // Candidacy — name + email + discord + experience
+        return (
+          name.trim().length > 0 &&
+          email.trim().length > 0 &&
+          discord.trim().length > 0 &&
+          motivation.trim().length > 0
+        );
+      case 3: // Commitment — hours + timezone + days
+        return (
+          hoursPerWeek !== "" &&
+          timezone.trim().length > 0 &&
+          availableDays.length >= 3
+        );
+      case 4: // Council Questions — all 3 sub-questions answered
+        return (
+          councilAnswers.cq1 !== "" &&
+          councilAnswers.cq2 !== "" &&
+          councilAnswers.cq3 !== ""
+        );
+      case 5: // Deciding Question — value selected
+        return decidingAnswer !== "";
+      case 6: // Review — everything filled
         return (
           name.trim() &&
-          motivation.trim().length >= 20 &&
-          answers.q1 &&
-          answers.q2 &&
-          answers.q3
+          email.trim() &&
+          discord.trim() &&
+          motivation.trim() &&
+          hoursPerWeek &&
+          timezone.trim() &&
+          availableDays.length >= 3 &&
+          councilAnswers.cq1 &&
+          councilAnswers.cq2 &&
+          councilAnswers.cq3 &&
+          decidingAnswer
         );
       default:
         return false;
@@ -127,14 +155,25 @@ export default function HouseMastersPage() {
 
     try {
       const formData = new FormData();
+      // Candidacy
       formData.set("name", name.trim());
       formData.set("email", email.trim());
       formData.set("discord", discord.trim());
       formData.set("motivation", motivation.trim());
 
-      Object.entries(answers).forEach(([key, value]) => {
+      // Commitment
+      formData.set("hours_per_week", hoursPerWeek);
+      formData.set("timezone", timezone.trim());
+      formData.set("available_days", availableDays.join(","));
+
+      // Council Questions
+      Object.entries(councilAnswers).forEach(([key, value]) => {
         formData.set(`answer_${key}`, value);
       });
+
+      // Deciding Question
+      formData.set("answer_deciding", decidingAnswer);
+      formData.set("deciding_reason", decidingReason.trim());
 
       const res = await submitHouseMaster(formData);
 
@@ -164,23 +203,28 @@ export default function HouseMastersPage() {
       case 1:
         return "the quest (house masters)";
       case 2:
-        return "questions";
+        return "candidacy";
       case 3:
-        return "questions";
+        return "commitment";
       case 4:
         return "questions";
       case 5:
         return "questions";
       case 6:
-        return "questions";
+        return "review";
       default:
         return "";
     }
   }
 
   // ── Get option text for review ─────────────────────────────────
-  function getAnswerText(qKey, letter) {
-    return QUESTIONS[qKey]?.options?.[letter] || letter;
+  function getCouncilAnswerText(cqKey, letter) {
+    const cq = COUNCIL_QUESTIONS.find((q) => q.key === cqKey);
+    return cq?.options?.[letter] || letter;
+  }
+
+  function getDecidingAnswerText(letter) {
+    return DECIDING_QUESTION.options?.[letter] || letter;
   }
 
   // ── Render ─────────────────────────────────────────────────────
@@ -263,7 +307,7 @@ export default function HouseMastersPage() {
         {formState === "form" && (
           <>
 
-            {/* Step 2: Name + Motivation */}
+            {/* Step 2: Candidacy */}
             {currentStep === 2 && (
               <CandidacyStep
                 name={name}
@@ -280,16 +324,39 @@ export default function HouseMastersPage() {
               />
             )}
 
-            {/* Steps 3–5: MCQ Questions */}
-            {currentStep >= 3 && currentStep <= 5 && (
-              <QuestionStep
-                currentStep={currentStep}
-                questionKey={QUESTION_KEYS[currentStep - 3]}
-                question={QUESTIONS[QUESTION_KEYS[currentStep - 3]]}
-                answer={answers[QUESTION_KEYS[currentStep - 3]]}
-                selectAnswer={selectAnswer}
-                statement={statements[QUESTIONS[QUESTION_KEYS[currentStep - 3]].followUp?.key]}
-                updateStatement={updateStatement}
+            {/* Step 3: Commitment */}
+            {currentStep === 3 && (
+              <CommitmentStep
+                hoursPerWeek={hoursPerWeek}
+                setHoursPerWeek={setHoursPerWeek}
+                timezone={timezone}
+                setTimezone={setTimezone}
+                availableDays={availableDays}
+                setAvailableDays={setAvailableDays}
+                goNext={goNext}
+                goBack={goBack}
+                canProceed={canProceed}
+              />
+            )}
+
+            {/* Step 4: Council Questions */}
+            {currentStep === 4 && (
+              <CouncilStep
+                councilAnswers={councilAnswers}
+                selectCouncilAnswer={selectCouncilAnswer}
+                goNext={goNext}
+                goBack={goBack}
+                canProceed={canProceed}
+              />
+            )}
+
+            {/* Step 5: Deciding Question */}
+            {currentStep === 5 && (
+              <DecidingStep
+                answer={decidingAnswer}
+                selectAnswer={setDecidingAnswer}
+                reason={decidingReason}
+                setReason={setDecidingReason}
                 goNext={goNext}
                 goBack={goBack}
                 canProceed={canProceed}
@@ -303,13 +370,17 @@ export default function HouseMastersPage() {
                 email={email}
                 discord={discord}
                 motivation={motivation}
-                answers={answers}
-                QUESTIONS={QUESTIONS}
-                QUESTION_KEYS={QUESTION_KEYS}
+                hoursPerWeek={hoursPerWeek}
+                timezone={timezone}
+                availableDays={availableDays}
+                councilAnswers={councilAnswers}
+                decidingAnswer={decidingAnswer}
+                decidingReason={decidingReason}
                 goBack={goBack}
                 handleSubmit={handleSubmit}
                 canProceed={canProceed}
-                getAnswerText={getAnswerText}
+                getCouncilAnswerText={getCouncilAnswerText}
+                getDecidingAnswerText={getDecidingAnswerText}
               />
             )}
           </>

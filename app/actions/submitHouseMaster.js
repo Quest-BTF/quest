@@ -24,35 +24,42 @@ export async function submitHouseMaster(formData) {
     const name = formData.get('name')?.toString().trim();
     const motivation = formData.get('motivation')?.toString().trim();
 
-    if (!name) {
-      return { success: false, error: 'Name is required.' };
-    }
+    const email = formData.get('email')?.toString().trim();
+    const discord = formData.get('discord')?.toString().trim();
+    const hoursPerWeek = formData.get('hours_per_week')?.toString();
+    const timezone = formData.get('timezone')?.toString().trim();
+    const availableDaysStr = formData.get('available_days')?.toString();
+    const availableDays = availableDaysStr ? availableDaysStr.split(',') : [];
+    
+    if (!name) return { success: false, error: 'Name is required.' };
+    if (!email) return { success: false, error: 'Email is required.' };
+    if (!discord) return { success: false, error: 'Discord username is required.' };
+    if (!hoursPerWeek || !timezone || availableDays.length < 3) return { success: false, error: 'Please complete the Commitment step.' };
 
     if (!motivation) {
-      return { success: false, error: 'Please tell us why you want to lead.' };
+      return { success: false, error: 'Please tell us about your experience.' };
     }
-
     if (motivation.length < 20) {
-      return {
-        success: false,
-        error: 'Please provide a more detailed motivation (at least 20 characters).',
-      };
+      return { success: false, error: 'Please provide a more detailed experience (at least 20 characters).' };
     }
 
-    // Collect MCQ answers (q1, q2, q3)
+    // Collect MCQ answers (cq1, cq2, cq3)
     const validLetters = ['A', 'B', 'C', 'D'];
-    const answers = {};
+    const councilAnswers = {};
     for (let i = 1; i <= 3; i++) {
-      const key = `q${i}`;
+      const key = `cq${i}`;
       const value = formData.get(`answer_${key}`)?.toString().trim().toUpperCase();
       if (!value || !validLetters.includes(value)) {
-        return {
-          success: false,
-          error: `Please answer all questions (question ${i} is missing or invalid).`,
-        };
+        return { success: false, error: `Please answer all council questions (question ${i} is missing).` };
       }
-      answers[key] = value;
+      councilAnswers[key] = value;
     }
+
+    const decidingAnswer = formData.get('answer_deciding')?.toString().trim().toUpperCase();
+    if (!decidingAnswer || !validLetters.includes(decidingAnswer)) {
+        return { success: false, error: 'Please answer the deciding question.' };
+    }
+    const decidingReason = formData.get('deciding_reason')?.toString().trim();
 
     // ── 2. Connect to MongoDB ──────────────────────────────────────
     await connectDB();
@@ -74,9 +81,17 @@ export async function submitHouseMaster(formData) {
 
     // ── 4. Call Groq AI for evaluation ─────────────────────────────
     let sortingResult;
+    const candidateData = {
+        name,
+        motivation,
+        councilAnswers,
+        decidingAnswer,
+        decidingReason,
+    };
+
     try {
       sortingResult = await evaluateHouseMaster(
-        { name, motivation, answers },
+        candidateData,
         takenHouses
       );
     } catch (aiError) {
@@ -95,8 +110,15 @@ export async function submitHouseMaster(formData) {
       try {
         savedMaster = await HouseMaster.create({
           name,
+          email,
+          discord,
+          hoursPerWeek,
+          timezone,
+          availableDays,
           motivation,
-          answers,
+          councilAnswers,
+          decidingAnswer,
+          decidingReason,
           house: sortingResult.house,
           aiReasoning: sortingResult.reasoning,
           status: 'Assigned',
@@ -126,7 +148,7 @@ export async function submitHouseMaster(formData) {
 
           try {
             sortingResult = await evaluateHouseMaster(
-              { name, motivation, answers },
+              candidateData,
               updatedTakenHouses
             );
           } catch (retryAiError) {

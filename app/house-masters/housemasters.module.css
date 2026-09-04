@@ -374,79 +374,195 @@
   font-size: 0.72rem;
   font-style: italic;
   color: var(--text-dark-muted);
-  margin-top: 0;
+  margin-top: var(--space-xs);
   margin-bottom: var(--space-sm);
   opacity: 0.7;
 }
 
-/* ── MCQ Option Cards (on parchment) ───────────────────────────── */
-.optionsGrid {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
+/* ── Dropdown Select (on parchment) ───────────────────────────── */
+.parchmentSelect {
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  font-family: var(--font-im-fell);
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  background: var(--bg-parchment-input);
+  border: none;
+  border-radius: 0;
+  outline: none;
+  transition: all var(--transition-base);
+  clip-path: polygon(2% 0, 98% 0, 100% 100%, 0% 100%);
+  -webkit-clip-path: polygon(2% 0, 98% 0, 100% 100%, 0% 100%);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234a3228' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.5rem center;
+  padding-right: 2.5rem;
 }
 
-.optionCard {
+.parchmentSelect:focus {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Day Chips (Commitment step) ──────────────────────────────── */
+.dayChipsContainer {
   display: flex;
-  align-items: flex-start;
-  gap: var(--space-md);
-  padding: 0.85rem 1rem;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.dayChip {
+  padding: 0.5rem 1rem;
+  font-family: var(--font-garamond);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dark-muted);
   background: var(--bg-parchment-input);
-  border: 1px solid rgba(44, 24, 16, 0.12);
-  border-radius: var(--radius-md);
+  border: 1px solid rgba(44, 24, 16, 0.15);
+  border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-base);
   user-select: none;
 }
 
-.optionCard:hover {
+.dayChip:hover {
   background: rgba(255, 255, 255, 0.4);
-  border-color: rgba(44, 24, 16, 0.25);
+  border-color: rgba(44, 24, 16, 0.3);
 }
 
-.optionSelected {
-  background: rgba(139, 26, 26, 0.08);
+.dayChipSelected {
+  background: rgba(139, 26, 26, 0.12);
   border-color: var(--accent-primary);
-  box-shadow: 0 0 0 1px rgba(139, 26, 26, 0.15);
+  color: var(--accent-primary);
+  font-weight: 800;
 }
 
-.optionSelected:hover {
-  background: rgba(139, 26, 26, 0.1);
+.dayChipSelected:hover {
+  background: rgba(139, 26, 26, 0.18);
 }
 
-.optionLetter {
-  flex-shrink: 0;
-  width: 28px;
-  height: 28px;
+/* ── Sub-question blocks (Council step) ───────────────────────── */
+.subQuestionBlock {
+  margin-bottom: var(--space-lg);
+}
+
+.subQuestionLabel {
+  font-family: var(--font-garamond);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-dark);
+  margin-bottom: var(--space-sm);
+  line-height: 1.4;
+}
+
+/* ── Value Option Cards (Deciding step) ───────────────────────── */
+.valueOptionsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+}
+
+.valueOptionCard {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  padding: 0.75rem 0.5rem;
+  background: var(--bg-parchment-input);
+  border: 1px solid rgba(44, 24, 16, 0.12);
   border-radius: var(--radius-sm);
-  font-size: 0.75rem;
-  font-weight: 700;
-  background: rgba(44, 24, 16, 0.08);
-  color: var(--text-dark-muted);
-  border: 1px solid rgba(44, 24, 16, 0.15);
+  cursor: pointer;
   transition: all var(--transition-base);
-  margin-top: 1px;
+  user-select: none;
+  min-height: 48px;
 }
 
-.optionSelected .optionLetter {
-  background: var(--accent-primary);
-  color: #f5f0e8;
+.valueOptionCard:hover {
+  background: rgba(255, 255, 255, 0.45);
+  border-color: rgba(44, 24, 16, 0.3);
+}
+
+.valueOptionSelected {
+  background: rgba(139, 26, 26, 0.12);
   border-color: var(--accent-primary);
 }
 
-.optionText {
-  font-size: 0.88rem;
+.valueOptionSelected:hover {
+  background: rgba(139, 26, 26, 0.18);
+}
+
+.valueOptionText {
+  font-family: var(--font-garamond);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: var(--text-dark-secondary);
-  line-height: 1.5;
+  transition: color var(--transition-fast);
+}
+
+.valueOptionSelected .valueOptionText {
+  color: var(--accent-primary);
+}
+
+/* ── MCQ Option Cards (on parchment) ───────────────────────────── */
+.optionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+}
+
+.optionCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.75rem 0.8rem;
+  background: var(--bg-parchment-input);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  user-select: none;
+  clip-path: polygon(2% 0, 98% 0, 100% 100%, 0% 100%);
+  -webkit-clip-path: polygon(2% 0, 98% 0, 100% 100%, 0% 100%);
+  min-height: 56px;
+}
+
+.optionCard:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.optionSelected {
+  background: rgba(139, 26, 26, 0.12);
+}
+
+.optionSelected:hover {
+  background: rgba(139, 26, 26, 0.15);
+}
+
+.optionLetter {
+  display: none;
+}
+
+.optionText {
+  font-family: var(--font-im-fell);
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--text-dark-secondary);
+  line-height: 1.4;
   transition: color var(--transition-fast);
 }
 
 .optionSelected .optionText {
   color: var(--text-dark);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* ── Review Screen ─────────────────────────────────────────────── */
@@ -895,5 +1011,13 @@
   .parchment {
     padding: 55px 40px 50px 35px;
     min-height: 420px;
+  }
+
+  .optionsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .valueOptionsGrid {
+    grid-template-columns: 1fr 1fr;
   }
 }

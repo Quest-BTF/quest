@@ -2,19 +2,24 @@
 import styles from "../housemasters.module.css";
 import { FaArrowLeft } from "react-icons/fa";
 import { GiWaxSeal } from "react-icons/gi";
+import { COUNCIL_QUESTIONS } from "../constants";
 
 export default function ReviewStep({
   name,
   email,
   discord,
   motivation,
-  answers,
-  QUESTIONS,
-  QUESTION_KEYS,
+  hoursPerWeek,
+  timezone,
+  availableDays,
+  councilAnswers,
+  decidingAnswer,
+  decidingReason,
   goBack,
   handleSubmit,
   canProceed,
-  getAnswerText,
+  getCouncilAnswerText,
+  getDecidingAnswerText,
 }) {
   return (
     <div className={styles.stepContent} key="step-6">
@@ -28,6 +33,7 @@ export default function ReviewStep({
           There are no revisions.
         </p>
 
+        {/* Candidacy */}
         <div className={styles.reviewSection}>
           <p className={styles.reviewLabel}>Name</p>
           <p className={styles.reviewValue}>{name}</p>
@@ -50,15 +56,49 @@ export default function ReviewStep({
           </p>
         </div>
 
-        {QUESTION_KEYS.map((qKey) => (
-          <div key={qKey} className={styles.reviewSection}>
-            <p className={styles.reviewLabel}>{QUESTIONS[qKey].title}</p>
+        {/* Commitment */}
+        <div className={styles.reviewSection}>
+          <p className={styles.reviewLabel}>Hours Per Week</p>
+          <p className={styles.reviewValue}>{hoursPerWeek}</p>
+        </div>
+
+        <div className={styles.reviewSection}>
+          <p className={styles.reviewLabel}>Timezone</p>
+          <p className={styles.reviewValue}>{timezone}</p>
+        </div>
+
+        <div className={styles.reviewSection}>
+          <p className={styles.reviewLabel}>Available Days</p>
+          <p className={styles.reviewValue}>{availableDays.join(", ")}</p>
+        </div>
+
+        {/* Council Questions */}
+        {COUNCIL_QUESTIONS.map((cq) => (
+          <div key={cq.key} className={styles.reviewSection}>
+            <p className={styles.reviewLabel}>{cq.label}</p>
             <p className={styles.reviewValue}>
-              <strong>{answers[qKey]}.</strong>{" "}
-              {getAnswerText(qKey, answers[qKey])}
+              <strong>{councilAnswers[cq.key]}.</strong>{" "}
+              {getCouncilAnswerText(cq.key, councilAnswers[cq.key])}
             </p>
           </div>
         ))}
+
+        {/* Deciding Question */}
+        <div className={styles.reviewSection}>
+          <p className={styles.reviewLabel}>Core Value</p>
+          <p className={styles.reviewValue}>
+            <strong>{getDecidingAnswerText(decidingAnswer)}</strong>
+          </p>
+        </div>
+
+        {decidingReason && (
+          <div className={styles.reviewSection}>
+            <p className={styles.reviewLabel}>Why That One?</p>
+            <p className={`${styles.reviewValue} ${styles.reviewQuote}`}>
+              &ldquo;{decidingReason}&rdquo;
+            </p>
+          </div>
+        )}
 
         <p className={styles.reviewNote}>
           By submitting, you accept the Council&apos;s decision as final.
