@@ -1,0 +1,850 @@
+/* ═══════════════════════════════════════════════════════════════════
+   HOUSE MASTERS — Page Styles
+   Warm parchment scroll aesthetic with wax seal accents
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Page Container ─────────────────────────────────────────────── */
+.page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  padding: var(--space-xl) var(--space-md);
+}
+
+/* ── Floating Orbs (decorative background) ──────────────────────── */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  animation: float 8s ease-in-out infinite;
+}
+
+.orb1 {
+  width: 400px;
+  height: 400px;
+  background: rgba(139, 26, 26, 0.08);
+  top: -10%;
+  left: -5%;
+  animation-delay: 0s;
+}
+
+.orb2 {
+  width: 300px;
+  height: 300px;
+  background: rgba(212, 169, 106, 0.06);
+  bottom: 10%;
+  right: -5%;
+  animation-delay: -3s;
+}
+
+.orb3 {
+  width: 250px;
+  height: 250px;
+  background: rgba(139, 26, 26, 0.05);
+  top: 50%;
+  left: 60%;
+  animation-delay: -5s;
+}
+
+/* ── Progress Header ───────────────────────────────────────────── */
+.progressHeader {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+  animation: fadeIn 0.6s ease-out;
+}
+
+.progressLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+}
+
+.progressTitle {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+/* ── Parchment Card ────────────────────────────────────────────── */
+.parchmentCard {
+  width: 100%;
+  max-width: 560px;
+  background: linear-gradient(
+    180deg,
+    var(--bg-parchment-light) 0%,
+    var(--bg-parchment) 30%,
+    var(--bg-parchment-dark) 100%
+  );
+  border: 1px solid rgba(44, 24, 16, 0.12);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-parchment);
+  animation: fadeInUp 0.6s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle parchment texture overlay + sandy effect */
+.parchmentCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+    radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    radial-gradient(
+      ellipse at 30% 20%,
+      rgba(255, 255, 255, 0.12),
+      transparent 60%
+    ),
+    radial-gradient(ellipse at 80% 80%, rgba(0, 0, 0, 0.06), transparent 50%);
+  background-size:
+    40px 40px,
+    25px 25px,
+    100% 100%,
+    100% 100%;
+  background-position:
+    0 0,
+    15px 15px,
+    0 0,
+    0 0;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ── Landing Screen (Scroll) ──────────────────────────────────── */
+.scrollContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  margin-top: 130px;
+}
+
+.crestPlaceholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(44, 24, 16, 0.1);
+  border: 2px dashed rgba(44, 24, 16, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-xl);
+  color: var(--text-dark-muted);
+  font-size: 2.5rem;
+  animation: float 4s ease-in-out infinite;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.crestPlaceholder:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: rgba(44, 24, 16, 0.15);
+}
+
+.scrollTitle {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-dark-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.scrollHeading {
+  font-family: var(--font-garamond);
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  font-weight: 800;
+  color: #b8860b; /* dark gold */
+  margin-bottom: var(--space-xl);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.scrollCta {
+  font-family: var(--font-garamond);
+  font-size: 0.85rem;
+  color: #b8860b; /* dark gold */
+  font-style: italic;
+}
+
+/* ── Preamble Screen ──────────────────────────────────────────── */
+.parchment {
+  position: relative;
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  background-image: url("/images/old-scroll.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 80px 80px 60px 80px;
+  min-height: 740px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.preambleTitle {
+  font-family: var(--font-garamond);
+  font-size: 0.7rem;
+  font-style: italic;
+  text-transform: uppercase;
+  color: var(--text-accent);
+  margin-bottom: var(--space-xs);
+  position: relative;
+  z-index: 1;
+}
+
+.preambleHeading {
+  font-family: var(--font-garamond);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: var(--space-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  z-index: 1;
+}
+
+.preambleText {
+  font-family: var(--font-im-fell);
+  font-size: 0.9rem;
+  color: var(--text-dark-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+  position: relative;
+  z-index: 1;
+}
+
+.preambleText p {
+  margin-bottom: var(--space-md);
+}
+
+.preambleLink {
+  color: var(--accent-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ── Question Screens ─────────────────────────────────────────── */
+.questionContainer {
+  position: relative;
+  z-index: 1;
+}
+
+.questionLabel {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-dark-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.questionTitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.3;
+}
+
+.questionSubtext {
+  font-size: 0.85rem;
+  color: var(--text-dark-secondary);
+  margin-bottom: var(--space-xl);
+  line-height: 1.5;
+}
+
+/* ── Text Fields (on parchment) ────────────────────────────────── */
+.parchmentFieldGroup {
+  margin-bottom: var(--space-lg);
+}
+
+.parchmentLabel {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dark-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.parchmentInput {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  background: var(--bg-parchment-input);
+  border: 1px solid rgba(44, 24, 16, 0.15);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: all var(--transition-base);
+}
+
+.parchmentInput:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(139, 26, 26, 0.15);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.parchmentInput::placeholder {
+  color: var(--text-dark-muted);
+  opacity: 0.6;
+}
+
+.parchmentTextarea {
+  composes: parchmentInput;
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.55;
+}
+
+.fieldHint {
+  font-size: 0.72rem;
+  color: var(--text-dark-muted);
+  margin-top: var(--space-xs);
+  opacity: 0.7;
+}
+
+/* ── MCQ Option Cards (on parchment) ───────────────────────────── */
+.optionsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.optionCard {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: 0.85rem 1rem;
+  background: var(--bg-parchment-input);
+  border: 1px solid rgba(44, 24, 16, 0.12);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  user-select: none;
+}
+
+.optionCard:hover {
+  background: rgba(255, 255, 255, 0.4);
+  border-color: rgba(44, 24, 16, 0.25);
+}
+
+.optionSelected {
+  background: rgba(139, 26, 26, 0.08);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 1px rgba(139, 26, 26, 0.15);
+}
+
+.optionSelected:hover {
+  background: rgba(139, 26, 26, 0.1);
+}
+
+.optionLetter {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(44, 24, 16, 0.08);
+  color: var(--text-dark-muted);
+  border: 1px solid rgba(44, 24, 16, 0.15);
+  transition: all var(--transition-base);
+  margin-top: 1px;
+}
+
+.optionSelected .optionLetter {
+  background: var(--accent-primary);
+  color: #f5f0e8;
+  border-color: var(--accent-primary);
+}
+
+.optionText {
+  font-size: 0.88rem;
+  color: var(--text-dark-secondary);
+  line-height: 1.5;
+  transition: color var(--transition-fast);
+}
+
+.optionSelected .optionText {
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+/* ── Review Screen ─────────────────────────────────────────────── */
+.reviewContainer {
+  position: relative;
+  z-index: 1;
+}
+
+.reviewSection {
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid rgba(44, 24, 16, 0.1);
+}
+
+.reviewSection:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.reviewLabel {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-dark-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.reviewValue {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.reviewQuote {
+  font-style: italic;
+  padding-left: var(--space-md);
+  border-left: 3px solid var(--accent-primary);
+}
+
+.reviewNote {
+  font-size: 0.8rem;
+  color: var(--text-dark-muted);
+  text-align: center;
+  margin-top: var(--space-lg);
+  font-style: italic;
+}
+
+/* ── Navigation / Wax Seal Button ──────────────────────────────── */
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.navBack {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.6rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-dark-muted);
+  background: transparent;
+  border: 1px solid rgba(44, 24, 16, 0.15);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.navBack:hover {
+  background: rgba(44, 24, 16, 0.05);
+  color: var(--text-dark);
+  border-color: rgba(44, 24, 16, 0.3);
+}
+
+.sealButton {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(
+    145deg,
+    var(--accent-primary) 0%,
+    var(--accent-primary-deep) 100%
+  );
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f5f0e8;
+  font-size: 1.1rem;
+  transition: all var(--transition-base);
+  box-shadow:
+    0 4px 15px rgba(139, 26, 26, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15);
+  margin-left: auto;
+}
+
+.sealButton:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow:
+    0 8px 25px rgba(139, 26, 26, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.sealButton:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+.sealButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.trapeziumButton {
+  background: var(--accent-primary);
+  color: #f5f0e8;
+  border: none;
+  padding: 0.5rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+  transition: all var(--transition-base);
+  text-transform: uppercase;
+  margin: 0 auto;
+  box-shadow:
+    0 4px 15px rgba(139, 26, 26, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15);
+}
+
+.trapeziumButton:hover {
+  background: var(--accent-primary-deep);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.submitButton {
+  composes: sealButton;
+  width: auto;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  gap: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── Loading State ─────────────────────────────────────────────── */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3xl) var(--space-xl);
+  text-align: center;
+  animation: fadeIn 0.4s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+.loadingIcon {
+  font-size: 3.5rem;
+  margin-bottom: var(--space-xl);
+  color: var(--accent-primary);
+  animation: float 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(139, 26, 26, 0.4));
+}
+
+.loadingTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.loadingSubtitle {
+  font-size: 0.85rem;
+  color: var(--text-dark-muted);
+}
+
+/* Pulsing dots animation */
+.loadingDots {
+  display: flex;
+  gap: 6px;
+  margin-top: var(--space-lg);
+}
+
+.loadingDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  animation: dotPulse 1.4s ease-in-out infinite;
+}
+
+.loadingDot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.loadingDot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes dotPulse {
+  0%,
+  80%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── Result State ──────────────────────────────────────────────── */
+.resultContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.resultIconContainer {
+  margin-bottom: var(--space-lg);
+}
+
+.resultIcon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.resultIconAshmoor {
+  composes: resultIcon;
+  background: rgba(220, 38, 38, 0.15);
+  color: var(--house-ashmoor);
+  box-shadow: 0 0 30px rgba(220, 38, 38, 0.2);
+}
+
+.resultIconRavenscar {
+  composes: resultIcon;
+  background: rgba(37, 99, 235, 0.15);
+  color: var(--house-ravenscar);
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.2);
+}
+
+.resultIconValemont {
+  composes: resultIcon;
+  background: rgba(5, 150, 105, 0.15);
+  color: var(--house-valemont);
+  box-shadow: 0 0 30px rgba(5, 150, 105, 0.2);
+}
+
+.resultIconThornvale {
+  composes: resultIcon;
+  background: rgba(124, 58, 237, 0.15);
+  color: var(--house-thornvale);
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.2);
+}
+
+.resultPreTitle {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-dark-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.resultTitle {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.resultHouse {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: var(--space-lg);
+  padding: 0.3rem 0;
+}
+
+.houseAshmoor {
+  color: var(--house-ashmoor);
+  text-shadow: 0 0 30px rgba(220, 38, 38, 0.3);
+}
+.houseRavenscar {
+  color: var(--house-ravenscar);
+  text-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+}
+.houseValemont {
+  color: var(--house-valemont);
+  text-shadow: 0 0 30px rgba(5, 150, 105, 0.3);
+}
+.houseThornvale {
+  color: var(--house-thornvale);
+  text-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+}
+
+.resultReasoning {
+  font-size: 0.9rem;
+  color: var(--text-dark-secondary);
+  line-height: 1.7;
+  max-width: 420px;
+  margin-bottom: var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(139, 26, 26, 0.04);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--accent-primary);
+  text-align: left;
+  font-style: italic;
+}
+
+.resultNote {
+  font-size: 0.78rem;
+  color: var(--text-dark-muted);
+  margin-top: var(--space-md);
+  line-height: 1.5;
+}
+
+/* ── Error State ───────────────────────────────────────────────── */
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-xl);
+  animation: fadeIn 0.4s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+.errorIcon {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+  color: var(--status-eliminated);
+}
+
+.errorMessage {
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  margin-bottom: var(--space-lg);
+  line-height: 1.5;
+  max-width: 380px;
+}
+
+.retryButton {
+  composes: submitButton;
+}
+
+/* ── Full State (all houses taken) ─────────────────────────────── */
+.fullContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.fullIcon {
+  font-size: 3rem;
+  margin-bottom: var(--space-lg);
+  color: var(--text-dark-muted);
+}
+
+.fullTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.fullSubtext {
+  font-size: 0.88rem;
+  color: var(--text-dark-secondary);
+  line-height: 1.6;
+  max-width: 380px;
+}
+
+/* ── Step Animation ────────────────────────────────────────────── */
+.stepContent {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* ── Responsive ────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .page {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .parchmentCard {
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+  }
+
+  .scrollHeading {
+    font-size: 1.3rem;
+  }
+
+  .crestPlaceholder {
+    width: 90px;
+    height: 90px;
+    font-size: 2rem;
+  }
+
+  .navContainer {
+    flex-direction: column-reverse;
+    gap: var(--space-sm);
+  }
+
+  .navBack,
+  .sealButton,
+  .submitButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .sealButton {
+    border-radius: var(--radius-md);
+    width: 100%;
+    height: 48px;
+  }
+
+  .parchment {
+    padding: 55px 40px 50px 35px;
+    min-height: 420px;
+  }
+}

@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════
    ADMIN DASHBOARD — Styles
-   Candidate management with gold & black luxury theme
+   Candidate management with parchment & crimson theme
    ═══════════════════════════════════════════════════════════════════ */
 
 /* ── Page Layout ────────────────────────────────────────────────── */
@@ -82,7 +82,7 @@
   font-family: var(--font-sans);
   font-size: 0.95rem;
   font-weight: 600;
-  color: #0a0a0a;
+  color: #f5f0e8;
   background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-deep) 100%);
   border: none;
   border-radius: var(--radius-md);
@@ -122,7 +122,7 @@
 .headerIcon {
   font-size: 2rem;
   color: var(--accent-gold);
-  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
+  filter: drop-shadow(0 0 10px rgba(139, 26, 26, 0.4));
 }
 
 .headerTitle {
@@ -149,7 +149,7 @@
   font-family: var(--font-sans);
   font-size: 0.85rem;
   font-weight: 600;
-  color: #0a0a0a;
+  color: #f5f0e8;
   background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-gold-deep) 100%);
   border: none;
   border-radius: var(--radius-md);
@@ -319,7 +319,7 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   border-bottom: 1px solid var(--border-subtle);
-  background: rgba(212, 175, 55, 0.02);
+  background: rgba(139, 26, 26, 0.02);
   white-space: nowrap;
 }
 
@@ -336,7 +336,7 @@
 }
 
 .table tbody tr:hover {
-  background: rgba(212, 175, 55, 0.03);
+  background: rgba(139, 26, 26, 0.03);
 }
 
 .table tbody tr:last-child td {
@@ -485,7 +485,7 @@
 
 .detailContent {
   padding: var(--space-lg) var(--space-xl);
-  background: rgba(212, 175, 55, 0.015);
+  background: rgba(139, 26, 26, 0.015);
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -521,7 +521,7 @@
 }
 
 .detailSection {
-  background: rgba(212, 175, 55, 0.03);
+  background: rgba(139, 26, 26, 0.03);
   border-radius: var(--radius-md);
   padding: var(--space-md);
   border: 1px solid var(--border-subtle);
@@ -582,7 +582,7 @@
   color: var(--accent-gold-light);
   background: var(--accent-gold-subtle);
   border-radius: var(--radius-full);
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(139, 26, 26, 0.2);
 }
 
 .emailSentBadge {
@@ -657,9 +657,9 @@
 }
 
 .toastInfo {
-  background: rgba(212, 175, 55, 0.9);
-  color: #0a0a0a;
-  border: 1px solid rgba(240, 208, 96, 0.4);
+  background: rgba(139, 26, 26, 0.9);
+  color: #f5f0e8;
+  border: 1px solid rgba(178, 34, 34, 0.4);
 }
 
 /* ── Loading ────────────────────────────────────────────────────── */
