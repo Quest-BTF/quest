@@ -5,6 +5,8 @@ import { GiWaxSeal } from "react-icons/gi";
 
 export default function ReviewStep({
   name,
+  email,
+  discord,
   motivation,
   answers,
   QUESTIONS,
@@ -32,7 +34,17 @@ export default function ReviewStep({
         </div>
 
         <div className={styles.reviewSection}>
-          <p className={styles.reviewLabel}>Why You Want to Lead</p>
+          <p className={styles.reviewLabel}>Email</p>
+          <p className={styles.reviewValue}>{email}</p>
+        </div>
+
+        <div className={styles.reviewSection}>
+          <p className={styles.reviewLabel}>Discord</p>
+          <p className={styles.reviewValue}>{discord}</p>
+        </div>
+
+        <div className={styles.reviewSection}>
+          <p className={styles.reviewLabel}>Leadership / Mentorship Experience</p>
           <p className={`${styles.reviewValue} ${styles.reviewQuote}`}>
             &ldquo;{motivation}&rdquo;
           </p>

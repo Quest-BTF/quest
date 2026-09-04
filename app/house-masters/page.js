@@ -39,6 +39,8 @@ export default function HouseMastersPage() {
 
   // Form data
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [discord, setDiscord] = useState("");
   const [motivation, setMotivation] = useState("");
   const [answers, setAnswers] = useState({ q1: "", q2: "", q3: "" });
   const [statements, setStatements] = useState({
@@ -84,8 +86,8 @@ export default function HouseMastersPage() {
         return true;
       case 1: // Preamble — always can proceed
         return true;
-      case 2: // Name + motivation
-        return name.trim().length > 0 && motivation.trim().length >= 20;
+      case 2: // Name + email + discord + motivation
+        return name.trim().length > 0 && email.trim().length > 0 && discord.trim().length > 0 && motivation.trim().length > 0;
       case 3: // Q1
         return answers.q1 !== "";
       case 4: // Q2
@@ -126,6 +128,8 @@ export default function HouseMastersPage() {
     try {
       const formData = new FormData();
       formData.set("name", name.trim());
+      formData.set("email", email.trim());
+      formData.set("discord", discord.trim());
       formData.set("motivation", motivation.trim());
 
       Object.entries(answers).forEach(([key, value]) => {
@@ -264,6 +268,10 @@ export default function HouseMastersPage() {
               <CandidacyStep
                 name={name}
                 setName={setName}
+                email={email}
+                setEmail={setEmail}
+                discord={discord}
+                setDiscord={setDiscord}
                 motivation={motivation}
                 setMotivation={setMotivation}
                 goNext={goNext}
@@ -292,6 +300,8 @@ export default function HouseMastersPage() {
             {currentStep === 6 && (
               <ReviewStep
                 name={name}
+                email={email}
+                discord={discord}
                 motivation={motivation}
                 answers={answers}
                 QUESTIONS={QUESTIONS}
