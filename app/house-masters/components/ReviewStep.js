@@ -15,6 +15,8 @@ export default function ReviewStep({
   councilAnswers,
   decidingAnswer,
   decidingReason,
+  commitmentConfirmed,
+  setCommitmentConfirmed,
   goBack,
   handleSubmit,
   canProceed,
@@ -24,14 +26,28 @@ export default function ReviewStep({
   return (
     <div className={styles.stepContent} key="step-6">
       <div className={styles.reviewContainer}>
-        <p className={styles.questionLabel}>Final Review</p>
+        <p className={styles.questionLabel}>Last Look</p>
         <h2 className={styles.questionTitle}>
-          Read It Back Before It&apos;s Sent to the Council...
+          Read It Back Before It&apos;s Sent to the Council.
         </h2>
         <p className={styles.questionSubtext}>
-          Once submitted, your answers will be sealed and sent to the Council.
-          There are no revisions.
+          Once submitted, the Council reviews your answers and confirms your
+          House.
         </p>
+
+        <label className={styles.commitmentCheckboxRow} htmlFor="hm-commitment-confirmed">
+          <input
+            id="hm-commitment-confirmed"
+            type="checkbox"
+            className={styles.commitmentCheckbox}
+            checked={commitmentConfirmed}
+            onChange={(e) => setCommitmentConfirmed(e.target.checked)}
+          />
+          <span className={styles.commitmentCheckboxText}>
+            I can commit to hosting 2 live sessions a week and being the
+            first point of contact for my House for the full thirty days.
+          </span>
+        </label>
 
         {/* Candidacy */}
         <div className={styles.reviewSection}>

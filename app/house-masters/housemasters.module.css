@@ -570,7 +570,44 @@
   position: relative;
   z-index: 1;
 }
+}
 
+.commitmentCheckboxRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+  padding: var(--space-md);
+  background: rgba(44, 24, 16, 0.04);
+  border: 1px solid rgba(44, 24, 16, 0.12);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.commitmentCheckbox {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--accent-primary);
+  cursor: pointer;
+}
+
+.commitmentCheckboxText {
+  font-family: var(--font-garamond);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.reviewSection {
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid rgba(44, 24, 16, 0.1);
+}
 .reviewSection {
   margin-bottom: var(--space-lg);
   padding-bottom: var(--space-lg);

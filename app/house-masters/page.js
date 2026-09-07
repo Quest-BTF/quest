@@ -60,6 +60,9 @@ export default function HouseMastersPage() {
   // Form data — Deciding Question (step 5)
   const [decidingAnswer, setDecidingAnswer] = useState("");
   const [decidingReason, setDecidingReason] = useState("");
+  
+// Form data — Review (step 6)
+const [commitmentConfirmed, setCommitmentConfirmed] = useState(false);
 
   // ── Check availability on mount ────────────────────────────────
   useEffect(() => {
@@ -116,20 +119,21 @@ export default function HouseMastersPage() {
         );
       case 5: // Deciding Question — value selected
         return decidingAnswer !== "";
-      case 6: // Review — everything filled
-        return (
-          name.trim() &&
-          email.trim() &&
-          discord.trim() &&
-          motivation.trim() &&
-          hoursPerWeek &&
-          timezone.trim() &&
-          availableDays.length >= 3 &&
-          councilAnswers.cq1 &&
-          councilAnswers.cq2 &&
-          councilAnswers.cq3 &&
-          decidingAnswer
-        );
+      case 6: // Review — everything filled + commitment confirmed
+  return (
+    name.trim() &&
+    email.trim() &&
+    discord.trim() &&
+    motivation.trim() &&
+    hoursPerWeek &&
+    timezone.trim() &&
+    availableDays.length >= 3 &&
+    councilAnswers.cq1 &&
+    councilAnswers.cq2 &&
+    councilAnswers.cq3 &&
+    decidingAnswer &&
+    commitmentConfirmed
+  );
       default:
         return false;
     }
@@ -174,6 +178,9 @@ export default function HouseMastersPage() {
       // Deciding Question
       formData.set("answer_deciding", decidingAnswer);
       formData.set("deciding_reason", decidingReason.trim());
+      
+// Review — commitment confirmation
+formData.set("commitment_confirmed", commitmentConfirmed);
 
       const res = await submitHouseMaster(formData);
 
@@ -376,6 +383,8 @@ export default function HouseMastersPage() {
                 councilAnswers={councilAnswers}
                 decidingAnswer={decidingAnswer}
                 decidingReason={decidingReason}
+                commitmentConfirmed={commitmentConfirmed}
+                setCommitmentConfirmed={setCommitmentConfirmed}
                 goBack={goBack}
                 handleSubmit={handleSubmit}
                 canProceed={canProceed}
