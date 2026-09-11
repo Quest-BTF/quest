@@ -1,6 +1,6 @@
 "use client";
 import styles from "../housemasters.module.css";
-import { GiCrown } from "react-icons/gi";
+import Image from "next/image";
 
 export default function LandingStep({ goNext }) {
   return (
@@ -22,7 +22,7 @@ export default function LandingStep({ goNext }) {
           aria-label="Begin ceremony"
           id="begin-ceremony-btn"
         >
-          <GiCrown />
+          <Image src="/images/questSeal.png" alt="Quest Seal" width={120} height={120} />
         </div>
 
         <p className={styles.scrollCta}>Break the seal to read your Summons</p>

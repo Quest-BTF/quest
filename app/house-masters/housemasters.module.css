@@ -139,15 +139,10 @@
 .crestPlaceholder {
   width: 120px;
   height: 120px;
-  border-radius: 50%;
-  background: rgba(44, 24, 16, 0.1);
-  border: 2px dashed rgba(44, 24, 16, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto var(--space-xl);
-  color: var(--text-dark-muted);
-  font-size: 2.5rem;
   animation: float 4s ease-in-out infinite;
   cursor: pointer;
   transition: all var(--transition-base);
@@ -155,7 +150,6 @@
 
 .crestPlaceholder:hover {
   transform: translateY(-3px) scale(1.05);
-  background: rgba(44, 24, 16, 0.15);
 }
 
 .scrollTitle {

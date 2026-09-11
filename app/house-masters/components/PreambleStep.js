@@ -1,7 +1,7 @@
 "use client";
 import styles from "../housemasters.module.css";
 import { FaArrowRight } from "react-icons/fa";
-import { GiCrown } from "react-icons/gi";
+import Image from "next/image";
 import { PREAMBLE_TEXT } from "../constants";
 
 export default function PreambleStep({ goNext }) {
@@ -9,7 +9,7 @@ export default function PreambleStep({ goNext }) {
     <div className={styles.parchment}>
       <div className={styles.stepContent} key="step-1">
         <div className={styles.crestPlaceholder}>
-          <GiCrown />
+          <Image src="/images/questSeal.png" alt="Quest Seal" width={120} height={120} />
         </div>
         <p className={styles.preambleTitle}>A Summons From The Council</p>
         <h2 className={styles.preambleHeading}>
