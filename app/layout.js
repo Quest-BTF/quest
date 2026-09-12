@@ -1,4 +1,4 @@
-import { Outfit, EB_Garamond, IM_Fell_English } from "next/font/google";
+import { Outfit, EB_Garamond, Cormorant_Infant, Cinzel_Decorative } from "next/font/google";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -14,11 +14,17 @@ const garamond = EB_Garamond({
   style: ["normal", "italic"],
 });
 
-const imFell = IM_Fell_English({
+const cormorant = Cormorant_Infant({
   variable: "--font-im-fell",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
+});
+
+const cinzel = Cinzel_Decorative({
+  variable: "--font-cinzel",
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata = {
@@ -30,7 +36,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${garamond.variable} ${imFell.variable}`}>
+    <html lang="en" className={`${outfit.variable} ${garamond.variable} ${cormorant.variable} ${cinzel.variable}`}>
       <body suppressHydrationWarning>{children}</body>
     </html>
   );

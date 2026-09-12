@@ -1,7 +1,7 @@
 "use client";
 import styles from "../housemasters.module.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { GiCrown } from "react-icons/gi";
+import Image from "next/image";
 import { COUNCIL_QUESTIONS } from "../constants";
 
 export default function CouncilStep({
@@ -15,7 +15,7 @@ export default function CouncilStep({
     <div className={styles.stepContent} key="step-4">
       <div className={styles.questionContainer}>
         <div className={styles.candidacyCrest}>
-          <GiCrown />
+          <Image src="/images/questSeal.png" alt="Quest Seal" width={80} height={80} />
         </div>
 
         <div style={{ textAlign: "center" }}>

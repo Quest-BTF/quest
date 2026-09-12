@@ -70,7 +70,7 @@ export const DECIDING_QUESTION = {
  */
 export const TOTAL_PAGES = 7;
 
-export const PREAMBLE_TEXT = `Yhe role does not fall to whoever asks for it. It falls to
+export const PREAMBLE_TEXT = `The role does not fall to whoever asks for it. It falls to
 the one who has already shown they can guide others
 toward finished work - and your name reached the
 Council's table on that evidence alone.

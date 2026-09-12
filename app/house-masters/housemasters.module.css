@@ -162,7 +162,7 @@
 }
 
 .scrollHeading {
-  font-family: var(--font-garamond);
+  font-family: var(--font-im-fell);
   font-size: clamp(1.4rem, 4vw, 1.8rem);
   font-weight: 800;
   color: #b8860b; /* dark gold */
@@ -172,7 +172,7 @@
 }
 
 .scrollCta {
-  font-family: var(--font-garamond);
+  font-family: var(--font-im-fell);
   font-size: 0.85rem;
   color: #b8860b; /* dark gold */
   font-style: italic;
@@ -196,7 +196,7 @@
   text-align: center;
 }
 .preambleTitle {
-  font-family: var(--font-garamond);
+  font-family: var(--font-im-fell);
   font-size: 0.7rem;
   font-style: italic;
   text-transform: uppercase;
@@ -207,7 +207,7 @@
 }
 
 .preambleHeading {
-  font-family: var(--font-garamond);
+  font-family: var(--font-im-fell);
   font-size: 1.1rem;
   font-weight: 800;
   color: var(--text-dark);
@@ -230,6 +230,13 @@
 
 .preambleText p {
   margin-bottom: var(--space-md);
+}
+
+.preambleText p:first-of-type::first-letter {
+  color: #8F0017;
+  font-family: var(--font-cinzel);
+  font-size: 1.33em;
+  font-weight: 700;
 }
 
 .preambleLink {
@@ -260,7 +267,7 @@
 }
 
 .questionLabel {
-  font-family: var(--font-garamond);
+  font-family: var(--font-im-fell);
   font-size: 0.7rem;
   font-weight: 700;
   font-style: italic;
@@ -271,7 +278,7 @@
 }
 
 .questionTitle {
-  font-family: var(--font-garamond);
+  font-family: var(--font-im-fell);
   font-size: 1.3rem;
   font-weight: 800;
   color: var(--text-dark);
@@ -297,7 +304,7 @@
 
 .parchmentLabel {
   display: block;
-  font-family: var(--font-garamond);
+  font-family: var(--font-im-fell);
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -410,7 +417,7 @@
 
 .dayChip {
   padding: 0.5rem 1rem;
-  font-family: var(--font-garamond);
+  font-family: var(--font-im-fell);
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -446,7 +453,7 @@
 }
 
 .subQuestionLabel {
-  font-family: var(--font-garamond);
+  font-family: var(--font-im-fell);
   font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -493,7 +500,7 @@
 }
 
 .valueOptionText {
-  font-family: var(--font-garamond);
+  font-family: var(--font-im-fell);
   font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -622,7 +629,7 @@
   align-items: center;
   gap: var(--space-sm);
   padding: 0.6rem 1rem;
-  font-family: var(--font-sans);
+  font-family: var(--font-im-fell);
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--text-dark-muted);
@@ -683,7 +690,7 @@
   color: #f5f0e8;
   border: none;
   padding: 0.5rem 2rem;
-  font-family: var(--font-sans);
+  font-family: var(--font-im-fell);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.15em;
@@ -707,7 +714,7 @@
   width: auto;
   border-radius: var(--radius-md);
   padding: 0.75rem 1.5rem;
-  font-family: var(--font-sans);
+  font-family: var(--font-im-fell);
   font-size: 0.85rem;
   font-weight: 700;
   gap: var(--space-sm);
@@ -963,55 +970,549 @@
   animation: fadeIn 0.4s ease-out;
 }
 
-/* ── Responsive ────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE OVERRIDES
+   Breakpoints: 1200px · 900px · 640px · 420px · 360px
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Large Desktop (max-width: 1200px) ────────────────────────── */
+@media (max-width: 1200px) {
+  .parchmentCard {
+    max-width: 520px;
+  }
+
+  .progressHeader {
+    max-width: 520px;
+  }
+
+  .parchment {
+    max-width: 520px;
+  }
+}
+
+/* ── Tablet (max-width: 900px) ────────────────────────────────── */
+@media (max-width: 900px) {
+  .parchmentCard {
+    max-width: 480px;
+    padding: var(--space-xl);
+  }
+
+  .progressHeader {
+    max-width: 480px;
+  }
+
+  .parchment {
+    max-width: 480px;
+    padding: 70px 60px 50px 60px;
+  }
+
+  .resultReasoning {
+    max-width: 360px;
+  }
+
+  .errorMessage {
+    max-width: 340px;
+  }
+}
+
+/* ── Mobile (max-width: 640px) ────────────────────────────────── */
 @media (max-width: 640px) {
   .page {
-    padding: var(--space-lg) var(--space-md);
+    padding: var(--space-lg) var(--space-sm);
   }
 
   .parchmentCard {
-    padding: var(--space-lg);
-    border-radius: var(--radius-lg);
+    max-width: 100%;
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .progressHeader {
+    max-width: 100%;
+    padding: 0 var(--space-xs);
+    margin-bottom: var(--space-md);
+  }
+
+  .progressLabel,
+  .progressTitle {
+    font-size: 0.6rem;
+  }
+
+  /* ── Landing ──────────────────────────────────── */
+  .scrollContainer {
+    margin-top: 80px;
   }
 
   .scrollHeading {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+  }
+
+  .scrollCta {
+    font-size: 0.78rem;
   }
 
   .crestPlaceholder {
     width: 90px;
     height: 90px;
-    font-size: 2rem;
   }
 
+  /* ── Preamble ─────────────────────────────────── */
+  .parchment {
+    max-width: 100%;
+    padding: 50px 35px 40px 35px;
+    min-height: 380px;
+  }
+
+  .preambleHeading {
+    font-size: 0.95rem;
+  }
+
+  .preambleText {
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+
+  /* ── Questions ────────────────────────────────── */
+  .candidacyCrest {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .questionTitle {
+    font-size: 1.05rem;
+  }
+
+  .questionSubtext {
+    font-size: 0.78rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  .questionLabel {
+    font-size: 0.65rem;
+  }
+
+  /* ── Fields ───────────────────────────────────── */
+  .parchmentInput {
+    padding: 0.65rem 1.2rem;
+    font-size: 0.88rem;
+  }
+
+  .parchmentTextarea {
+    padding: 0.65rem 1.2rem;
+    font-size: 0.88rem;
+    min-height: 90px;
+  }
+
+  .parchmentSelect {
+    padding: 0.65rem 1.2rem;
+    font-size: 0.88rem;
+    background-position: right 1rem center;
+    padding-right: 2rem;
+  }
+
+  .parchmentLabel {
+    font-size: 0.72rem;
+  }
+
+  .fieldHint {
+    font-size: 0.65rem;
+  }
+
+  /* ── Day Chips ────────────────────────────────── */
+  .dayChipsContainer {
+    gap: 6px;
+  }
+
+  .dayChip {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.65rem;
+  }
+
+  /* ── Option Cards ─────────────────────────────── */
+  .optionsGrid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .optionCard {
+    padding: 0.6rem 0.7rem;
+    min-height: 48px;
+  }
+
+  .optionText {
+    font-size: 0.75rem;
+  }
+
+  /* ── Value Options (Deciding) ─────────────────── */
+  .valueOptionsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .valueOptionCard {
+    padding: 0.6rem 0.4rem;
+    min-height: 42px;
+  }
+
+  .valueOptionText {
+    font-size: 0.68rem;
+  }
+
+  /* ── Sub-questions (Council) ──────────────────── */
+  .subQuestionLabel {
+    font-size: 0.72rem;
+  }
+
+  .subQuestionBlock {
+    margin-bottom: var(--space-md);
+  }
+
+  /* ── Navigation ──────────────────────────────── */
   .navContainer {
     flex-direction: column-reverse;
     gap: var(--space-sm);
+    margin-top: var(--space-lg);
   }
 
-  .navBack,
-  .sealButton,
-  .submitButton {
+  .navBack {
     width: 100%;
     justify-content: center;
   }
 
   .sealButton {
-    border-radius: var(--radius-md);
     width: 100%;
+    border-radius: var(--radius-md);
     height: 48px;
+    justify-content: center;
   }
 
+  .submitButton {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .trapeziumButton {
+    padding: 0.45rem 1.6rem;
+    font-size: 0.72rem;
+  }
+
+  /* ── Review ───────────────────────────────────── */
+  .reviewSection {
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-md);
+  }
+
+  .reviewLabel {
+    font-size: 0.6rem;
+  }
+
+  .reviewValue {
+    font-size: 0.85rem;
+  }
+
+  .reviewQuote {
+    padding-left: var(--space-sm);
+  }
+
+  .reviewNote {
+    font-size: 0.72rem;
+  }
+
+  /* ── Result ───────────────────────────────────── */
+  .resultTitle {
+    font-size: 1.15rem;
+  }
+
+  .resultHouse {
+    font-size: 1.6rem;
+  }
+
+  .resultReasoning {
+    font-size: 0.82rem;
+    max-width: 100%;
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .resultNote {
+    font-size: 0.7rem;
+  }
+
+  .resultIcon {
+    width: 65px;
+    height: 65px;
+    font-size: 2rem;
+  }
+
+  /* ── Error / Full ────────────────────────────── */
+  .errorMessage {
+    font-size: 0.82rem;
+    max-width: 100%;
+  }
+
+  .fullSubtext {
+    font-size: 0.8rem;
+    max-width: 100%;
+  }
+
+  /* ── Loading ──────────────────────────────────── */
+  .loadingContainer {
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .loadingIcon {
+    font-size: 2.8rem;
+  }
+
+  .loadingTitle {
+    font-size: 1rem;
+  }
+
+  /* ── Orbs (shrink on mobile) ─────────────────── */
+  .orb1 {
+    width: 250px;
+    height: 250px;
+  }
+
+  .orb2 {
+    width: 180px;
+    height: 180px;
+  }
+
+  .orb3 {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* ── Small Mobile (max-width: 420px) ──────────────────────────── */
+@media (max-width: 420px) {
+  .page {
+    padding: var(--space-md) var(--space-xs);
+  }
+
+  .parchmentCard {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  /* ── Landing ──────────────────────────────────── */
+  .scrollContainer {
+    margin-top: 60px;
+  }
+
+  .scrollHeading {
+    font-size: 1.05rem;
+  }
+
+  .crestPlaceholder {
+    width: 75px;
+    height: 75px;
+  }
+
+  /* ── Preamble ─────────────────────────────────── */
   .parchment {
-    padding: 55px 40px 50px 35px;
-    min-height: 420px;
+    padding: 40px 24px 32px 24px;
+    min-height: 320px;
   }
 
-  .optionsGrid {
-    grid-template-columns: 1fr;
+  .preambleHeading {
+    font-size: 0.85rem;
   }
 
+  .preambleText {
+    font-size: 0.75rem;
+    line-height: 1.55;
+  }
+
+  .preambleTitle {
+    font-size: 0.6rem;
+  }
+
+  /* ── Questions ────────────────────────────────── */
+  .candidacyCrest {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    margin-bottom: var(--space-md);
+  }
+
+  .questionTitle {
+    font-size: 0.92rem;
+  }
+
+  .questionSubtext {
+    font-size: 0.72rem;
+  }
+
+  .questionLabel {
+    font-size: 0.58rem;
+  }
+
+  /* ── Fields ───────────────────────────────────── */
+  .parchmentInput {
+    padding: 0.55rem 1rem;
+    font-size: 0.82rem;
+  }
+
+  .parchmentTextarea {
+    padding: 0.55rem 1rem;
+    font-size: 0.82rem;
+    min-height: 80px;
+  }
+
+  .parchmentSelect {
+    padding: 0.55rem 1rem;
+    font-size: 0.82rem;
+  }
+
+  .parchmentLabel {
+    font-size: 0.65rem;
+  }
+
+  /* ── Day Chips ────────────────────────────────── */
+  .dayChip {
+    padding: 0.35rem 0.55rem;
+    font-size: 0.58rem;
+  }
+
+  /* ── Value Options ────────────────────────────── */
   .valueOptionsGrid {
     grid-template-columns: 1fr 1fr;
+    gap: 4px;
+  }
+
+  .valueOptionCard {
+    padding: 0.5rem 0.3rem;
+    min-height: 38px;
+  }
+
+  .valueOptionText {
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── Option Cards ─────────────────────────────── */
+  .optionCard {
+    padding: 0.5rem 0.6rem;
+    min-height: 42px;
+  }
+
+  .optionText {
+    font-size: 0.7rem;
+  }
+
+  /* ── Sub-questions ────────────────────────────── */
+  .subQuestionLabel {
+    font-size: 0.65rem;
+  }
+
+  /* ── Navigation ──────────────────────────────── */
+  .navBack {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.72rem;
+  }
+
+  .sealButton {
+    height: 44px;
+    font-size: 0.95rem;
+  }
+
+  .submitButton {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.78rem;
+  }
+
+  .trapeziumButton {
+    padding: 0.4rem 1.2rem;
+    font-size: 0.65rem;
+  }
+
+  /* ── Result ───────────────────────────────────── */
+  .resultPreTitle {
+    font-size: 0.58rem;
+  }
+
+  .resultTitle {
+    font-size: 1rem;
+  }
+
+  .resultHouse {
+    font-size: 1.35rem;
+  }
+
+  .resultReasoning {
+    font-size: 0.75rem;
+  }
+
+  /* ── Loading ──────────────────────────────────── */
+  .loadingIcon {
+    font-size: 2.2rem;
+  }
+
+  .loadingTitle {
+    font-size: 0.9rem;
+  }
+
+  .loadingSubtitle {
+    font-size: 0.75rem;
+  }
+
+  /* ── Review ───────────────────────────────────── */
+  .reviewLabel {
+    font-size: 0.55rem;
+  }
+
+  .reviewValue {
+    font-size: 0.78rem;
+  }
+
+  /* ── Full / Error ─────────────────────────────── */
+  .fullTitle {
+    font-size: 1rem;
+  }
+
+  .fullSubtext {
+    font-size: 0.72rem;
+  }
+
+  .errorIcon {
+    font-size: 2.2rem;
+  }
+
+  .errorMessage {
+    font-size: 0.75rem;
+  }
+}
+
+/* ── Very Small Screens (max-width: 360px) ────────────────────── */
+@media (max-width: 360px) {
+  .parchment {
+    padding: 35px 18px 28px 18px;
+    min-height: 280px;
+  }
+
+  .preambleHeading {
+    font-size: 0.78rem;
+  }
+
+  .preambleText {
+    font-size: 0.7rem;
+  }
+
+  .questionTitle {
+    font-size: 0.82rem;
+  }
+
+  .scrollHeading {
+    font-size: 0.92rem;
+  }
+
+  .crestPlaceholder {
+    width: 65px;
+    height: 65px;
+  }
+
+  .candidacyCrest {
+    width: 45px;
+    height: 45px;
   }
 }

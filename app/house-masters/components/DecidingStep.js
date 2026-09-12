@@ -1,7 +1,7 @@
 "use client";
 import styles from "../housemasters.module.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { GiCrown } from "react-icons/gi";
+import Image from "next/image";
 import { DECIDING_QUESTION } from "../constants";
 
 export default function DecidingStep({
@@ -19,7 +19,7 @@ export default function DecidingStep({
     <div className={styles.stepContent} key="step-5">
       <div className={styles.questionContainer}>
         <div className={styles.candidacyCrest}>
-          <GiCrown />
+          <Image src="/images/questSeal.png" alt="Quest Seal" width={80} height={80} />
         </div>
 
         <div style={{ textAlign: "center" }}>
