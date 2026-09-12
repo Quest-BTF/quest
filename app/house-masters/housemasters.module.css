@@ -188,12 +188,12 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
-  padding: 80px 80px 60px 80px;
-  min-height: 740px;
+  padding: clamp(40px, 10vw, 80px) clamp(28px, 8vw, 80px) clamp(72px, 12vw, 100px);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  box-sizing: border-box;
 }
 .preambleTitle {
   font-family: var(--font-im-fell);
@@ -1003,7 +1003,6 @@
 
   .parchment {
     max-width: 480px;
-    padding: 70px 60px 50px 60px;
   }
 
   .resultReasoning {
@@ -1058,8 +1057,6 @@
   /* ── Preamble ─────────────────────────────────── */
   .parchment {
     max-width: 100%;
-    padding: 50px 35px 40px 35px;
-    min-height: 380px;
   }
 
   .preambleHeading {
@@ -1310,8 +1307,7 @@
 
   /* ── Preamble ─────────────────────────────────── */
   .parchment {
-    padding: 40px 24px 32px 24px;
-    min-height: 320px;
+    /* clamp handles padding */
   }
 
   .preambleHeading {
@@ -1486,8 +1482,7 @@
 /* ── Very Small Screens (max-width: 360px) ────────────────────── */
 @media (max-width: 360px) {
   .parchment {
-    padding: 35px 18px 28px 18px;
-    min-height: 280px;
+    /* clamp handles padding */
   }
 
   .preambleHeading {
