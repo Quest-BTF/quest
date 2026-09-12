@@ -45,15 +45,18 @@ export default function LandingPage() {
         {/* Description Card */}
         <div className={styles.descriptionCard}>
           <p className={styles.descriptionText}>
-            A <span className={styles.descriptionHighlight}>30-day execution experience</span> for
-            builders who are done consuming and ready to ship. You will be sorted
-            into one of Four Great Houses, given Quests, and held accountable by
-            your House and its Guardian.
+            A{" "}
+            <span className={styles.descriptionHighlight}>
+              30-day execution experience
+            </span>{" "}
+            for builders who are done consuming and ready to grow. You will be
+            sorted into one of Four Great Houses, given Quests, and held
+            accountable by your House and its Guardian.
           </p>
           <p className={styles.descriptionText}>
             This is not a course. It is a{" "}
             <span className={styles.descriptionHighlight}>proving ground</span>.
-            Only those who build will remain.
+            Only the brave will remain.
           </p>
         </div>
 
