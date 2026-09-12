@@ -10,6 +10,24 @@ export const HOURS_OPTIONS = [
   "12+ hours",
 ];
 
+export const TIMEZONE_OPTIONS = [
+  "Pacific Time (PT) - UTC-8/-7",
+  "Mountain Time (MT) - UTC-7/-6",
+  "Central Time (CT) - UTC-6/-5",
+  "Eastern Time (ET) - UTC-5/-4",
+  "Greenwich Mean Time (GMT) - UTC+0",
+  "Central European Time (CET) - UTC+1",
+  "Eastern European Time (EET) - UTC+2",
+  "West Africa Time (WAT) - UTC+1",
+  "Central Africa Time (CAT) - UTC+2",
+  "East Africa Time (EAT) - UTC+3",
+  "India Standard Time (IST) - UTC+5:30",
+  "China Standard Time (CST) - UTC+8",
+  "Japan Standard Time (JST) - UTC+9",
+  "Australian Eastern Time (AET) - UTC+10/+11",
+  "Other"
+];
+
 export const DAYS_OF_WEEK = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 
 // ── Step 4: The Council's Questions (multi-sub-question MCQ) ─────

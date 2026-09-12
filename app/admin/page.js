@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import styles from './admin.module.css';
 import { getCandidates } from '../actions/getCandidates';
 import { updateCandidate } from '../actions/updateCandidate';
@@ -36,10 +37,10 @@ const LETTER_TO_HOUSE = {
 };
 
 const HOUSE_ICONS = {
-  Ashmoor: <GiSwordBrandish />,
-  Ravenscar: <GiOpenBook />,
-  Valemont: <GiOakLeaf />,
-  Thornvale: <GiCrystalBall />,
+  Ashmoor: <Image src="/images/house-icons/ashmoor.png" alt="Ashmoor Logo" width={18} height={18} />,
+  Ravenscar: <Image src="/images/house-icons/ravenscar.png" alt="Ravenscar Logo" width={18} height={18} />,
+  Valemont: <Image src="/images/house-icons/valemont.png" alt="Valemont Logo" width={18} height={18} />,
+  Thornvale: <Image src="/images/house-icons/thornvale.png" alt="Thornvale Logo" width={18} height={18} />,
 };
 
 const ADMIN_SECRET = 'HARRY_POTTER';

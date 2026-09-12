@@ -2,7 +2,7 @@
 import styles from "../housemasters.module.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Image from "next/image";
-import { HOURS_OPTIONS, DAYS_OF_WEEK } from "../constants";
+import { HOURS_OPTIONS, TIMEZONE_OPTIONS, DAYS_OF_WEEK } from "../constants";
 
 export default function CommitmentStep({
   hoursPerWeek,
@@ -62,14 +62,19 @@ export default function CommitmentStep({
           <label htmlFor="hm-timezone" className={styles.parchmentLabel}>
             Your Timezone
           </label>
-          <input
+          <select
             id="hm-timezone"
-            type="text"
-            className={styles.parchmentInput}
-            placeholder="e.g. WAT (GMT+1)"
+            className={styles.parchmentSelect}
             value={timezone}
             onChange={(e) => setTimezone(e.target.value)}
-          />
+          >
+            <option value="" disabled>Select your timezone</option>
+            {TIMEZONE_OPTIONS.map((tz) => (
+              <option key={tz} value={tz}>
+                {tz}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className={styles.parchmentFieldGroup}>

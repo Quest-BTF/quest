@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import { useState, useEffect } from "react";
 import styles from "./housemasters.module.css";
 import { submitHouseMaster } from "../actions/submitHouseMaster";
@@ -26,10 +28,10 @@ import ReviewStep from "./components/ReviewStep";
 import { COUNCIL_QUESTIONS, DECIDING_QUESTION, TOTAL_PAGES } from "./constants";
 
 const HOUSE_ICONS = {
-  Ashmoor: <GiSwordBrandish />,
-  Ravenscar: <GiOpenBook />,
-  Valemont: <GiOakLeaf />,
-  Thornvale: <GiCrystalBall />,
+  Ashmoor: <Image src="/images/house-icons/ashmoor.png" alt="Ashmoor Logo" width={80} height={80} />,
+  Ravenscar: <Image src="/images/house-icons/ravenscar.png" alt="Ravenscar Logo" width={80} height={80} />,
+  Valemont: <Image src="/images/house-icons/valemont.png" alt="Valemont Logo" width={80} height={80} />,
+  Thornvale: <Image src="/images/house-icons/thornvale.png" alt="Thornvale Logo" width={80} height={80} />,
 };
 
 export default function HouseMastersPage() {
@@ -300,8 +302,8 @@ export default function HouseMastersPage() {
         <PreambleStep goNext={goNext} />
       )}
 
-      {/* Parchment Card — for all steps except preamble and landing */}
-      {!(formState === "form" && (currentStep === 0 || currentStep === 1)) && (
+      {/* Parchment Card — for all steps except preamble, landing, and result */}
+      {formState !== "result" && !(formState === "form" && (currentStep === 0 || currentStep === 1)) && (
       <div className={styles.parchmentCard}>
         {/* ── FORM STEPS ──────────────────────────────────────── */}
         {formState === "form" && (
@@ -407,8 +409,28 @@ export default function HouseMastersPage() {
           </div>
         )}
 
-        {/* ── RESULT STATE ────────────────────────────────────── */}
-        {formState === "result" && result && (
+        {/* ── ERROR STATE ─────────────────────────────────────── */}
+        {formState === "error" && (
+          <div className={styles.errorContainer}>
+            <div className={styles.errorIcon}>
+              <IoWarningOutline />
+            </div>
+            <p className={styles.errorMessage}>{errorMsg}</p>
+            <button
+              className={styles.retryButton}
+              onClick={() => setFormState("form")}
+              id="retry-btn"
+            >
+              Try Again
+            </button>
+          </div>
+        )}
+      </div>
+      )}
+
+      {/* ── RESULT STATE ────────────────────────────────────── */}
+      {formState === "result" && result && (
+        <div className={styles.parchment}>
           <div className={styles.resultContainer}>
             <div className={styles.resultIconContainer}>
               <div
@@ -442,25 +464,7 @@ export default function HouseMastersPage() {
               from the Council.
             </p>
           </div>
-        )}
-
-        {/* ── ERROR STATE ─────────────────────────────────────── */}
-        {formState === "error" && (
-          <div className={styles.errorContainer}>
-            <div className={styles.errorIcon}>
-              <IoWarningOutline />
-            </div>
-            <p className={styles.errorMessage}>{errorMsg}</p>
-            <button
-              className={styles.retryButton}
-              onClick={() => setFormState("form")}
-              id="retry-btn"
-            >
-              Try Again
-            </button>
-          </div>
-        )}
-      </div>
+        </div>
       )}
     </div>
   );

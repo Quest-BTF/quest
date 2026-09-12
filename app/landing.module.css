@@ -1,0 +1,440 @@
+/* ═══════════════════════════════════════════════════════════════════
+   QUEST LANDING PAGE — Styles
+   Dark, mysterious, atmospheric welcome experience
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Page Container ─────────────────────────────────────────────── */
+.page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  padding: var(--space-xl) var(--space-md);
+  overflow: hidden;
+}
+
+/* ── Floating Orbs (decorative background) ──────────────────────── */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+  animation: float 8s ease-in-out infinite;
+}
+
+.orb1 {
+  width: 500px;
+  height: 500px;
+  background: rgba(139, 26, 26, 0.07);
+  top: -15%;
+  left: -10%;
+  animation-delay: 0s;
+}
+
+.orb2 {
+  width: 400px;
+  height: 400px;
+  background: rgba(201, 130, 10, 0.05);
+  bottom: -10%;
+  right: -8%;
+  animation-delay: -3s;
+}
+
+.orb3 {
+  width: 300px;
+  height: 300px;
+  background: rgba(139, 26, 26, 0.04);
+  top: 40%;
+  left: 55%;
+  animation-delay: -5s;
+}
+
+.orb4 {
+  width: 200px;
+  height: 200px;
+  background: rgba(37, 99, 235, 0.04);
+  top: 20%;
+  right: 20%;
+  animation-delay: -7s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-25px) rotate(2deg); }
+}
+
+/* ── Main Content Area ──────────────────────────────────────────── */
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 640px;
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Seal / Crest ───────────────────────────────────────────────── */
+.seal {
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-xl);
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 40px rgba(139, 26, 26, 0.25));
+  transition: all 0.4s ease;
+}
+
+.seal:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 60px rgba(139, 26, 26, 0.4));
+}
+
+/* ── Eyebrow ────────────────────────────────────────────────────── */
+.eyebrow {
+  font-family: var(--font-im-fell);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--accent-primary-light);
+  margin-bottom: var(--space-sm);
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* ── Main Title ─────────────────────────────────────────────────── */
+.title {
+  font-family: var(--font-cinzel);
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 60px rgba(139, 26, 26, 0.2);
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 0.5s forwards;
+}
+
+/* ── Tagline ────────────────────────────────────────────────────── */
+.tagline {
+  font-family: var(--font-im-fell);
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2xl);
+  line-height: 1.6;
+  max-width: 460px;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 0.7s forwards;
+}
+
+/* ── Divider ────────────────────────────────────────────────────── */
+.divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-primary),
+    transparent
+  );
+  margin: 0 auto var(--space-xl);
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 0.9s forwards;
+}
+
+/* ── Description Card ───────────────────────────────────────────── */
+.descriptionCard {
+  background: var(--bg-glass);
+  border: 1px solid rgba(139, 26, 26, 0.12);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl) var(--space-2xl);
+  margin-bottom: var(--space-2xl);
+  max-width: 520px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1.1s forwards;
+}
+
+.descriptionText {
+  font-family: var(--font-im-fell);
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--space-md);
+}
+
+.descriptionText:last-child {
+  margin-bottom: 0;
+}
+
+.descriptionHighlight {
+  color: var(--accent-primary-light);
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* ── Houses Teaser ──────────────────────────────────────────────── */
+.housesTeaser {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1.3s forwards;
+}
+
+.houseEmblem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.houseDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px currentColor;
+}
+
+.houseDot:hover {
+  transform: scale(1.6);
+}
+
+.houseDotAshmoor {
+  composes: houseDot;
+  background: var(--house-ashmoor);
+  color: var(--house-ashmoor);
+}
+
+.houseDotRavenscar {
+  composes: houseDot;
+  background: var(--house-ravenscar);
+  color: var(--house-ravenscar);
+}
+
+.houseDotValemont {
+  composes: houseDot;
+  background: var(--house-valemont);
+  color: var(--house-valemont);
+}
+
+.houseDotThornvale {
+  composes: houseDot;
+  background: var(--house-thornvale);
+  color: var(--house-thornvale);
+}
+
+.houseName {
+  font-family: var(--font-im-fell);
+  font-size: 0.55rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.houseEmblem:hover .houseName {
+  color: var(--text-secondary);
+}
+
+/* ── CTA Button ─────────────────────────────────────────────────── */
+.ctaContainer {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1.5s forwards;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.85rem 2.5rem;
+  font-family: var(--font-im-fell);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #f5f0e8;
+  background: linear-gradient(
+    145deg,
+    var(--accent-primary) 0%,
+    var(--accent-primary-deep) 100%
+  );
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  clip-path: polygon(4% 0, 96% 0, 100% 100%, 0% 100%);
+  -webkit-clip-path: polygon(4% 0, 96% 0, 100% 100%, 0% 100%);
+  transition: all 0.3s ease;
+  box-shadow:
+    0 4px 20px rgba(139, 26, 26, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+
+.ctaButton:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 8px 30px rgba(139, 26, 26, 0.6),
+    inset 0 1px 2px rgba(255, 255, 255, 0.15);
+  background: linear-gradient(
+    145deg,
+    var(--accent-primary-light) 0%,
+    var(--accent-primary) 100%
+  );
+}
+
+.ctaButton:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.ctaIcon {
+  font-size: 0.85rem;
+  transition: transform 0.3s ease;
+}
+
+.ctaButton:hover .ctaIcon {
+  transform: translateX(4px);
+}
+
+/* ── Attribution ────────────────────────────────────────────────── */
+.attribution {
+  position: relative;
+  margin-top: var(--space-2xl);
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out 1.8s forwards;
+}
+
+.attributionText {
+  font-family: var(--font-im-fell);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.attributionLink {
+  color: var(--accent-primary-light);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 600;
+}
+
+.attributionLink:hover {
+  color: var(--text-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE OVERRIDES
+   ═══════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .descriptionCard {
+    padding: var(--space-lg) var(--space-xl);
+    max-width: 460px;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: var(--space-lg) var(--space-sm);
+    justify-content: center;
+    min-height: 100dvh;
+  }
+
+  .seal {
+    width: 110px;
+    height: 110px;
+    margin-bottom: var(--space-lg);
+  }
+
+  .tagline {
+    max-width: 320px;
+  }
+
+  .descriptionCard {
+    padding: var(--space-md) var(--space-lg);
+    max-width: 100%;
+  }
+
+  .descriptionText {
+    font-size: 0.82rem;
+  }
+
+  .housesTeaser {
+    gap: var(--space-md);
+  }
+
+  .houseName {
+    font-size: 0.48rem;
+  }
+
+  .ctaButton {
+    padding: 0.75rem 2rem;
+    font-size: 0.8rem;
+  }
+
+  .orb1 { width: 300px; height: 300px; }
+  .orb2 { width: 250px; height: 250px; }
+  .orb3 { width: 180px; height: 180px; }
+  .orb4 { display: none; }
+}
+
+@media (max-width: 420px) {
+  .page {
+    padding: var(--space-md) var(--space-xs);
+  }
+
+  .seal {
+    width: 90px;
+    height: 90px;
+  }
+
+  .descriptionCard {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .descriptionText {
+    font-size: 0.75rem;
+  }
+
+  .housesTeaser {
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  .ctaButton {
+    padding: 0.65rem 1.6rem;
+    font-size: 0.72rem;
+  }
+
+  /* attribution layout now handled globally */
+}
