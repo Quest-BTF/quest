@@ -62,7 +62,7 @@ export default function HouseMastersPage() {
   const [decidingReason, setDecidingReason] = useState("");
   
 // Form data — Review (step 6)
-const [commitmentConfirmed, setCommitmentConfirmed] = useState(false);
+// const [commitmentConfirmed, setCommitmentConfirmed] = useState(false);
 
   // ── Check availability on mount ────────────────────────────────
   useEffect(() => {

@@ -19,7 +19,7 @@ export default function ReviewStep({
   setCommitmentConfirmed,
   goBack,
   handleSubmit,
-  canProceed,
+  canProceed, 
   getCouncilAnswerText,
   getDecidingAnswerText,
 }) {
@@ -39,7 +39,7 @@ export default function ReviewStep({
           <input
             id="hm-commitment-confirmed"
             type="checkbox"
-            className={styles.commitmentCheckbox}
+            className={styles.commitmentCheckbox}ws
             checked={commitmentConfirmed}
             onChange={(e) => setCommitmentConfirmed(e.target.checked)}
           />
