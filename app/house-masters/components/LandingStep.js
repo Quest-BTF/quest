@@ -6,10 +6,10 @@ export default function LandingStep({ goNext }) {
   return (
     <div className={styles.scrollContainer}>
       <div className={styles.stepContent} key="step-0">
-        <h1 className={styles.scrollHeading}>Office of the House Masters</h1>
+        <h1 className={styles.scrollHeading}>Office of the Council</h1>
 
         <div
-          className={styles.crestPlaceholder}
+          className={styles.landingCrest}
           onClick={goNext}
           role="button"
           tabIndex={0}
@@ -22,7 +22,12 @@ export default function LandingStep({ goNext }) {
           aria-label="Begin ceremony"
           id="begin-ceremony-btn"
         >
-          <Image src="/images/questSeal.png" alt="Quest Seal" width={120} height={120} />
+          <Image
+            src="/images/questSeal.png"
+            alt="Quest Seal"
+            width={200}
+            height={200}
+          />
         </div>
 
         <p className={styles.scrollCta}>Break the seal to read your Summons</p>

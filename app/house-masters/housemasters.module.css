@@ -125,20 +125,10 @@
   border-radius: inherit;
 }
 
-/* ── Landing Screen (Scroll) ──────────────────────────────────── */
-.scrollContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-  margin-top: 130px;
-}
-
+/* ── crestPlaceholder ────────────────────────────────────────────── */
 .crestPlaceholder {
-  width: 120px;
-  height: 120px;
+  width: clamp(90px, 26vw, 130px);
+  height: clamp(90px, 26vw, 130px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,7 +138,44 @@
   transition: all var(--transition-base);
 }
 
-.crestPlaceholder:hover {
+.crestPlaceholder img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ── Landing Screen (Scroll) ──────────────────────────────────── */
+.scrollContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  width: 100%;
+}
+
+.landingCrest {
+  width: clamp(140px, 40vw, 200px);
+  height: clamp(140px, 40vw, 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-xl);
+  animation: float 4s ease-in-out infinite;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.landingCrest img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.landingCrest:hover {
   transform: translateY(-3px) scale(1.05);
 }
 
@@ -162,8 +189,8 @@
 }
 
 .scrollHeading {
-  font-family: var(--font-im-fell);
-  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  font-family: var(--font-cinzel);
+  font-size: clamp(2rem, 6vw, 3rem);
   font-weight: 800;
   color: #b8860b; /* dark gold */
   margin-bottom: var(--space-xl);
@@ -173,7 +200,7 @@
 
 .scrollCta {
   font-family: var(--font-im-fell);
-  font-size: 0.85rem;
+  font-size: 1.2rem;
   color: #b8860b; /* dark gold */
   font-style: italic;
 }
@@ -188,16 +215,23 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
-  padding: clamp(40px, 10vw, 80px) clamp(28px, 8vw, 80px) clamp(72px, 12vw, 100px);
+  padding: clamp(40px, 10vw, 80px) clamp(28px, 8vw, 80px)
+    clamp(72px, 12vw, 100px);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   box-sizing: border-box;
+  animation: unrollScroll 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Stagger the inner content to fade in after the scroll opens */
+.parchment > * {
+  animation: scrollContentReveal 0.6s ease-out 0.8s forwards;
 }
 .preambleTitle {
   font-family: var(--font-im-fell);
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   font-style: italic;
   text-transform: uppercase;
   color: var(--text-accent);
@@ -209,7 +243,7 @@
 .preambleHeading {
   font-family: var(--font-im-fell);
   font-size: 1.1rem;
-  font-weight: 800;
+  font-weight: bolder;
   color: var(--text-dark);
   margin-bottom: var(--space-lg);
   text-transform: uppercase;
@@ -220,7 +254,7 @@
 
 .preambleText {
   font-family: var(--font-im-fell);
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--text-dark-secondary);
   line-height: 1.7;
   margin-bottom: var(--space-lg);
@@ -233,7 +267,7 @@
 }
 
 .preambleText p:first-of-type::first-letter {
-  color: #8F0017;
+  color: #8f0017;
   font-family: var(--font-cinzel);
   font-size: 1.33em;
   font-weight: 700;
@@ -324,8 +358,8 @@
   border-radius: 0;
   outline: none;
   transition: all var(--transition-base);
-  clip-path: polygon(2% 0, 98% 0, 100% 100%, 0% 100%);
-  -webkit-clip-path: polygon(2% 0, 98% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(0% 0, 100% 0, 98% 100%, 2% 100%);
+  -webkit-clip-path: polygon(0% 0, 100% 0, 98% 100%, 2% 100%);
 }
 
 .parchmentInput:focus {
@@ -351,8 +385,8 @@
   border-radius: 0;
   outline: none;
   transition: all var(--transition-base);
-  clip-path: polygon(2% 0, 98% 0, 100% 100%, 0% 100%);
-  -webkit-clip-path: polygon(2% 0, 98% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(0% 0, 100% 0, 98% 100%, 2% 100%);
+  -webkit-clip-path: polygon(0% 0, 100% 0, 98% 100%, 2% 100%);
   resize: vertical;
   min-height: 110px;
   line-height: 1.55;
@@ -392,8 +426,8 @@
   border-radius: 0;
   outline: none;
   transition: all var(--transition-base);
-  clip-path: polygon(2% 0, 98% 0, 100% 100%, 0% 100%);
-  -webkit-clip-path: polygon(2% 0, 98% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(0% 0, 100% 0, 98% 100%, 2% 100%);
+  -webkit-clip-path: polygon(0% 0, 100% 0, 98% 100%, 2% 100%);
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
@@ -790,6 +824,31 @@
   }
 }
 
+@keyframes unrollScroll {
+  0% {
+    clip-path: inset(0 0 100% 0);
+    opacity: 0.6;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes scrollContentReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ── Result State ──────────────────────────────────────────────── */
 .resultContainer {
   display: flex;
@@ -1049,11 +1108,14 @@
     font-size: 0.78rem;
   }
 
+  .landingCrest {
+    width: 90px;
+    height: 90px;
+  }
   .crestPlaceholder {
     width: 90px;
     height: 90px;
   }
-
   /* ── Preamble ─────────────────────────────────── */
   .parchment {
     max-width: 100%;
@@ -1291,20 +1353,6 @@
     padding: var(--space-md) var(--space-sm);
   }
 
-  /* ── Landing ──────────────────────────────────── */
-  .scrollContainer {
-    margin-top: 60px;
-  }
-
-  .scrollHeading {
-    font-size: 1.05rem;
-  }
-
-  .crestPlaceholder {
-    width: 75px;
-    height: 75px;
-  }
-
   /* ── Preamble ─────────────────────────────────── */
   .parchment {
     /* clamp handles padding */
@@ -1495,15 +1543,6 @@
 
   .questionTitle {
     font-size: 0.82rem;
-  }
-
-  .scrollHeading {
-    font-size: 0.92rem;
-  }
-
-  .crestPlaceholder {
-    width: 65px;
-    height: 65px;
   }
 
   .candidacyCrest {

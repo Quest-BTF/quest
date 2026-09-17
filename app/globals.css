@@ -7,12 +7,12 @@
 
 /* ── Design Tokens ──────────────────────────────────────────────── */
 :root {
-  /* Background — deep dark true blue tones */
-  --bg-primary: #0B1020;
-  --bg-secondary: #0d1b2a;
-  --bg-elevated: #1b263b;
-  --bg-card: rgba(11, 16, 32, 0.9);
-  --bg-glass: rgba(13, 27, 42, 0.6);
+  /* Background — pitch black tones */
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-elevated: #141414;
+  --bg-card: rgba(0, 0, 0, 0.9);
+  --bg-glass: rgba(10, 10, 10, 0.6);
   --bg-input: rgba(255, 255, 255, 0.04);
 
   /* Parchment — warm sand tones for cards & surfaces */

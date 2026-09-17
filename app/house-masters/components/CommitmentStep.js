@@ -17,15 +17,21 @@ export default function CommitmentStep({
 }) {
   function toggleDay(day) {
     setAvailableDays((prev) =>
-      prev.includes(day) ? prev.filter((d) => d !== day) : [...prev, day]
+      prev.includes(day) ? prev.filter((d) => d !== day) : [...prev, day],
     );
   }
 
   return (
     <div className={styles.stepContent} key="step-3">
       <div className={styles.questionContainer}>
-        <div className={styles.candidacyCrest}>
-          <Image src="/images/questSeal.png" alt="Quest Seal" width={80} height={80} />
+        <div className={styles.crestPlaceholder}>
+          <Image
+            src="/images/questSeal.png"
+            alt="Quest Seal"
+            width={400}
+            height={400}
+            quality={100}
+          />
         </div>
 
         <div style={{ textAlign: "center" }}>
@@ -68,7 +74,9 @@ export default function CommitmentStep({
             value={timezone}
             onChange={(e) => setTimezone(e.target.value)}
           >
-            <option value="" disabled>Select your timezone</option>
+            <option value="" disabled>
+              Select your timezone
+            </option>
             {TIMEZONE_OPTIONS.map((tz) => (
               <option key={tz} value={tz}>
                 {tz}

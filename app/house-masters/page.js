@@ -36,7 +36,7 @@ const HOUSE_ICONS = {
 
 export default function HouseMastersPage() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [formState, setFormState] = useState("loading"); // loading | form | submitting | result | error | full
+  const [formState, setFormState] = useState("form"); // form | submitting | result | error | full
   const [result, setResult] = useState(null);
   const [errorMsg, setErrorMsg] = useState("");
   const [availableCount, setAvailableCount] = useState(4);
@@ -100,7 +100,7 @@ export default function HouseMastersPage() {
       case 2: // Candidacy — name + email + discord + experience
         return (
           name.trim().length > 0 &&
-          email.trim().length > 0 &&
+          email.trim().toLowerCase().includes("@gmail.com") &&
           discord.trim().length > 0 &&
           motivation.trim().length > 0
         );
@@ -230,29 +230,6 @@ export default function HouseMastersPage() {
   }
 
   // ── Render ─────────────────────────────────────────────────────
-  // Loading check
-  if (formState === "loading") {
-    return (
-      <div className={styles.page}>
-        <div className={`${styles.orb} ${styles.orb1}`} />
-        <div className={`${styles.orb} ${styles.orb2}`} />
-        <div className={`${styles.orb} ${styles.orb3}`} />
-        <div className={styles.parchmentCard}>
-          <div className={styles.loadingContainer}>
-            <div className={styles.loadingIcon}>
-              <GiScrollUnfurled />
-            </div>
-            <p className={styles.loadingTitle}>Consulting the Council...</p>
-            <div className={styles.loadingDots}>
-              <span className={styles.loadingDot} />
-              <span className={styles.loadingDot} />
-              <span className={styles.loadingDot} />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   // All houses taken
   if (formState === "full") {

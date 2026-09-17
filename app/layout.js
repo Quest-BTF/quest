@@ -2,7 +2,7 @@ import {
   Outfit,
   EB_Garamond,
   Cormorant_Infant,
-  Cinzel_Decorative,
+  Cinzel,
 } from "next/font/google";
 import "./globals.css";
 
@@ -26,7 +26,7 @@ const cormorant = Cormorant_Infant({
   style: ["normal", "italic"],
 });
 
-const cinzel = Cinzel_Decorative({
+const cinzel = Cinzel({
   variable: "--font-cinzel",
   subsets: ["latin"],
   weight: ["400", "700"],

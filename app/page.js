@@ -20,8 +20,9 @@ export default function LandingPage() {
           <Image
             src="/images/questSeal.png"
             alt="Quest Seal"
-            width={140}
-            height={140}
+            width={400}
+            height={400}
+            quality={100}
             priority
           />
         </div>

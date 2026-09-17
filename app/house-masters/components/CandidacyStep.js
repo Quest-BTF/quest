@@ -19,8 +19,14 @@ export default function CandidacyStep({
   return (
     <div className={styles.stepContent} key="step-2">
       <div className={styles.questionContainer}>
-        <div className={styles.candidacyCrest}>
-          <Image src="/images/questSeal.png" alt="Quest Seal" width={80} height={80} />
+        <div className={styles.crestPlaceholder}>
+          <Image
+            src="/images/questSeal.png"
+            alt="Quest Seal"
+            width={400}
+            height={400}
+            quality={100}
+          />
         </div>
 
         <div style={{ textAlign: "center" }}>
@@ -51,13 +57,16 @@ export default function CandidacyStep({
 
         <div className={styles.parchmentFieldGroup}>
           <label htmlFor="hm-email" className={styles.parchmentLabel}>
-            Email
+            Gmail Address
           </label>
+          <p className={styles.fieldHint}>
+            A Google account is required for Council document access.
+          </p>
           <input
             id="hm-email"
             type="email"
             className={styles.parchmentInput}
-            placeholder=""
+            placeholder="e.g. adalovelace@gmail.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             autoComplete="email"

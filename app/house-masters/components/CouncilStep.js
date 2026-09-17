@@ -14,8 +14,14 @@ export default function CouncilStep({
   return (
     <div className={styles.stepContent} key="step-4">
       <div className={styles.questionContainer}>
-        <div className={styles.candidacyCrest}>
-          <Image src="/images/questSeal.png" alt="Quest Seal" width={80} height={80} />
+        <div className={styles.crestPlaceholder}>
+          <Image
+            src="/images/questSeal.png"
+            alt="Quest Seal"
+            width={400}
+            height={400}
+            quality={100}
+          />
         </div>
 
         <div style={{ textAlign: "center" }}>
