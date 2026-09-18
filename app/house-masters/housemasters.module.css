@@ -82,12 +82,7 @@
 .parchmentCard {
   width: 100%;
   max-width: 560px;
-  background: linear-gradient(
-    180deg,
-    var(--bg-parchment-light) 0%,
-    var(--bg-parchment) 30%,
-    var(--bg-parchment-dark) 100%
-  );
+  background: var(--bg-parchment);
   border: 1px solid rgba(44, 24, 16, 0.12);
   /* border-radius: var(--radius-xl); */
   padding: var(--space-2xl);
@@ -132,16 +127,67 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto var(--space-xl);
+  margin: 0 auto 10px; /* Reduced from var(--space-xl) to bring circles closer */
   animation: float 4s ease-in-out infinite;
   cursor: pointer;
   transition: all var(--transition-base);
+}
+
+.crestPlaceholder:hover {
+  transform: translateY(-3px) scale(1.05);
+  filter: drop-shadow(0 0 40px rgba(139, 26, 26, 0.4));
 }
 
 .crestPlaceholder img {
   width: 100%;
   height: auto;
   object-fit: contain;
+}
+
+/* ── Progress Tracker ───────────────────────────────────────────── */
+.stepProgressWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: var(--space-xl);
+}
+
+.progressContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: clamp(140px, 40vw, 200px); /* Matches crest width */
+  position: relative;
+  margin-top: 10px;
+}
+
+/* Connecting line */
+.progressContainer::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--accent-primary);
+  z-index: 1;
+  transform: translateY(-50%);
+}
+
+.progressDot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--accent-primary);
+  background-color: var(--bg-parchment);
+  z-index: 2;
+  position: relative;
+  transition: all var(--transition-base);
+}
+
+.progressDot.active {
+  background-color: var(--accent-primary);
 }
 
 /* ── Landing Screen (Scroll) ──────────────────────────────────── */
@@ -929,18 +975,22 @@
 .houseAshmoor {
   color: var(--house-ashmoor);
   text-shadow: 0 0 30px rgba(220, 38, 38, 0.3);
+  font-family: var(--font-cinzel-decorative);
 }
 .houseRavenscar {
   color: var(--house-ravenscar);
   text-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+  font-family: var(--font-cinzel-decorative);
 }
 .houseValemont {
   color: var(--house-valemont);
   text-shadow: 0 0 30px rgba(5, 150, 105, 0.3);
+  font-family: var(--font-cinzel-decorative);
 }
 .houseThornvale {
   color: var(--house-thornvale);
   text-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+  font-family: var(--font-cinzel-decorative);
 }
 
 .resultReasoning {

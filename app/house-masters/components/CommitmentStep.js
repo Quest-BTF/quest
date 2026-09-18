@@ -24,16 +24,6 @@ export default function CommitmentStep({
   return (
     <div className={styles.stepContent} key="step-3">
       <div className={styles.questionContainer}>
-        <div className={styles.crestPlaceholder}>
-          <Image
-            src="/images/questSeal.png"
-            alt="Quest Seal"
-            width={400}
-            height={400}
-            quality={100}
-          />
-        </div>
-
         <div style={{ textAlign: "center" }}>
           <p className={styles.questionLabel}>The Commitment</p>
           <h2 className={styles.questionTitle}>

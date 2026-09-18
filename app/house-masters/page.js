@@ -20,6 +20,7 @@ import { HiOutlineLockClosed } from "react-icons/hi";
 // Import extracted components and constants
 import LandingStep from "./components/LandingStep";
 import PreambleStep from "./components/PreambleStep";
+import StepProgress from "./components/StepProgress";
 import CandidacyStep from "./components/CandidacyStep";
 import CommitmentStep from "./components/CommitmentStep";
 import CouncilStep from "./components/CouncilStep";
@@ -28,10 +29,38 @@ import ReviewStep from "./components/ReviewStep";
 import { COUNCIL_QUESTIONS, DECIDING_QUESTION, TOTAL_PAGES } from "./constants";
 
 const HOUSE_ICONS = {
-  Ashmoor: <Image src="/images/house-icons/ashmoor.png" alt="Ashmoor Logo" width={80} height={80} />,
-  Ravenscar: <Image src="/images/house-icons/ravenscar.png" alt="Ravenscar Logo" width={80} height={80} />,
-  Valemont: <Image src="/images/house-icons/valemont.png" alt="Valemont Logo" width={80} height={80} />,
-  Thornvale: <Image src="/images/house-icons/thornvale.png" alt="Thornvale Logo" width={80} height={80} />,
+  Ashmoor: (
+    <Image
+      src="/images/house-icons/ashmoor.png"
+      alt="Ashmoor Logo"
+      width={80}
+      height={80}
+    />
+  ),
+  Ravenscar: (
+    <Image
+      src="/images/house-icons/ravenscar.png"
+      alt="Ravenscar Logo"
+      width={80}
+      height={80}
+    />
+  ),
+  Valemont: (
+    <Image
+      src="/images/house-icons/valemont.png"
+      alt="Valemont Logo"
+      width={80}
+      height={80}
+    />
+  ),
+  Thornvale: (
+    <Image
+      src="/images/house-icons/thornvale.png"
+      alt="Thornvale Logo"
+      width={80}
+      height={80}
+    />
+  ),
 };
 
 export default function HouseMastersPage() {
@@ -192,33 +221,6 @@ export default function HouseMastersPage() {
     }
   }
 
-  // ── Page label ─────────────────────────────────────────────────
-  function getPageLabel() {
-    if (currentStep === 0) return null;
-    return `PAGE ${currentStep} OF ${TOTAL_PAGES - 1}`;
-  }
-
-  function getPageTitle() {
-    switch (currentStep) {
-      case 0:
-        return "the quest (house masters)";
-      case 1:
-        return "the quest (house masters)";
-      case 2:
-        return "candidacy";
-      case 3:
-        return "commitment";
-      case 4:
-        return "questions";
-      case 5:
-        return "questions";
-      case 6:
-        return "review";
-      default:
-        return "";
-    }
-  }
-
   // ── Get option text for review ─────────────────────────────────
   function getCouncilAnswerText(cqKey, letter) {
     const cq = COUNCIL_QUESTIONS.find((q) => q.key === cqKey);
@@ -261,14 +263,6 @@ export default function HouseMastersPage() {
       <div className={`${styles.orb} ${styles.orb2}`} />
       <div className={`${styles.orb} ${styles.orb3}`} />
 
-      {/* Progress Header */}
-      {formState === "form" && currentStep > 0 && (
-        <div className={styles.progressHeader}>
-          <span className={styles.progressTitle}>{getPageTitle()}</span>
-          <span className={styles.progressLabel}>{getPageLabel()}</span>
-        </div>
-      )}
-
       {/* Step 0: Landing / Scroll */}
       {formState === "form" && currentStep === 0 && (
         <LandingStep goNext={goNext} />
@@ -280,130 +274,132 @@ export default function HouseMastersPage() {
       )}
 
       {/* Parchment Card — for all steps except preamble, landing, and result */}
-      {formState !== "result" && !(formState === "form" && (currentStep === 0 || currentStep === 1)) && (
-      <div className={styles.parchmentCard}>
-        {/* ── FORM STEPS ──────────────────────────────────────── */}
-        {formState === "form" && (
-          <>
+      {formState !== "result" &&
+        !(formState === "form" && (currentStep === 0 || currentStep === 1)) && (
+          <div className={styles.parchmentCard}>
+            <StepProgress currentStep={currentStep} />
 
-            {/* Step 2: Candidacy */}
-            {currentStep === 2 && (
-              <CandidacyStep
-                name={name}
-                setName={setName}
-                email={email}
-                setEmail={setEmail}
-                discord={discord}
-                setDiscord={setDiscord}
-                motivation={motivation}
-                setMotivation={setMotivation}
-                goNext={goNext}
-                goBack={goBack}
-                canProceed={canProceed}
-              />
+            {/* ── FORM STEPS ──────────────────────────────────────── */}
+            {formState === "form" && (
+              <>
+                {/* Step 2: Candidacy */}
+                {currentStep === 2 && (
+                  <CandidacyStep
+                    name={name}
+                    setName={setName}
+                    email={email}
+                    setEmail={setEmail}
+                    discord={discord}
+                    setDiscord={setDiscord}
+                    motivation={motivation}
+                    setMotivation={setMotivation}
+                    goNext={goNext}
+                    goBack={goBack}
+                    canProceed={canProceed}
+                  />
+                )}
+
+                {/* Step 3: Commitment */}
+                {currentStep === 3 && (
+                  <CommitmentStep
+                    hoursPerWeek={hoursPerWeek}
+                    setHoursPerWeek={setHoursPerWeek}
+                    timezone={timezone}
+                    setTimezone={setTimezone}
+                    availableDays={availableDays}
+                    setAvailableDays={setAvailableDays}
+                    goNext={goNext}
+                    goBack={goBack}
+                    canProceed={canProceed}
+                  />
+                )}
+
+                {/* Step 4: Council Questions */}
+                {currentStep === 4 && (
+                  <CouncilStep
+                    councilAnswers={councilAnswers}
+                    selectCouncilAnswer={selectCouncilAnswer}
+                    goNext={goNext}
+                    goBack={goBack}
+                    canProceed={canProceed}
+                  />
+                )}
+
+                {/* Step 5: Deciding Question */}
+                {currentStep === 5 && (
+                  <DecidingStep
+                    answer={decidingAnswer}
+                    selectAnswer={setDecidingAnswer}
+                    reason={decidingReason}
+                    setReason={setDecidingReason}
+                    goNext={goNext}
+                    goBack={goBack}
+                    canProceed={canProceed}
+                  />
+                )}
+
+                {/* Step 6: Review */}
+                {currentStep === 6 && (
+                  <ReviewStep
+                    name={name}
+                    email={email}
+                    discord={discord}
+                    motivation={motivation}
+                    hoursPerWeek={hoursPerWeek}
+                    timezone={timezone}
+                    availableDays={availableDays}
+                    councilAnswers={councilAnswers}
+                    decidingAnswer={decidingAnswer}
+                    decidingReason={decidingReason}
+                    goBack={goBack}
+                    handleSubmit={handleSubmit}
+                    canProceed={canProceed}
+                    getCouncilAnswerText={getCouncilAnswerText}
+                    getDecidingAnswerText={getDecidingAnswerText}
+                  />
+                )}
+              </>
             )}
 
-            {/* Step 3: Commitment */}
-            {currentStep === 3 && (
-              <CommitmentStep
-                hoursPerWeek={hoursPerWeek}
-                setHoursPerWeek={setHoursPerWeek}
-                timezone={timezone}
-                setTimezone={setTimezone}
-                availableDays={availableDays}
-                setAvailableDays={setAvailableDays}
-                goNext={goNext}
-                goBack={goBack}
-                canProceed={canProceed}
-              />
+            {/* ── SUBMITTING STATE ────────────────────────────────── */}
+            {formState === "submitting" && (
+              <div className={styles.loadingContainer}>
+                <div className={styles.loadingIcon}>
+                  <GiScrollUnfurled />
+                </div>
+                <h2 className={styles.loadingTitle}>
+                  The Council is deliberating...
+                </h2>
+                <p className={styles.loadingSubtitle}>
+                  Your answers are being reviewed. A house will be assigned
+                  shortly.
+                </p>
+                <div className={styles.loadingDots}>
+                  <span className={styles.loadingDot} />
+                  <span className={styles.loadingDot} />
+                  <span className={styles.loadingDot} />
+                </div>
+              </div>
             )}
 
-            {/* Step 4: Council Questions */}
-            {currentStep === 4 && (
-              <CouncilStep
-                councilAnswers={councilAnswers}
-                selectCouncilAnswer={selectCouncilAnswer}
-                goNext={goNext}
-                goBack={goBack}
-                canProceed={canProceed}
-              />
+            {/* ── ERROR STATE ─────────────────────────────────────── */}
+            {formState === "error" && (
+              <div className={styles.errorContainer}>
+                <div className={styles.errorIcon}>
+                  <IoWarningOutline />
+                </div>
+                <p className={styles.errorMessage}>{errorMsg}</p>
+                <button
+                  className={styles.retryButton}
+                  onClick={() => setFormState("form")}
+                  id="retry-btn"
+                >
+                  Try Again
+                </button>
+              </div>
             )}
-
-            {/* Step 5: Deciding Question */}
-            {currentStep === 5 && (
-              <DecidingStep
-                answer={decidingAnswer}
-                selectAnswer={setDecidingAnswer}
-                reason={decidingReason}
-                setReason={setDecidingReason}
-                goNext={goNext}
-                goBack={goBack}
-                canProceed={canProceed}
-              />
-            )}
-
-            {/* Step 6: Review */}
-            {currentStep === 6 && (
-              <ReviewStep
-                name={name}
-                email={email}
-                discord={discord}
-                motivation={motivation}
-                hoursPerWeek={hoursPerWeek}
-                timezone={timezone}
-                availableDays={availableDays}
-                councilAnswers={councilAnswers}
-                decidingAnswer={decidingAnswer}
-                decidingReason={decidingReason}
-                goBack={goBack}
-                handleSubmit={handleSubmit}
-                canProceed={canProceed}
-                getCouncilAnswerText={getCouncilAnswerText}
-                getDecidingAnswerText={getDecidingAnswerText}
-              />
-            )}
-          </>
-        )}
-
-        {/* ── SUBMITTING STATE ────────────────────────────────── */}
-        {formState === "submitting" && (
-          <div className={styles.loadingContainer}>
-            <div className={styles.loadingIcon}>
-              <GiScrollUnfurled />
-            </div>
-            <h2 className={styles.loadingTitle}>
-              The Council is deliberating...
-            </h2>
-            <p className={styles.loadingSubtitle}>
-              Your answers are being reviewed. A house will be assigned
-              shortly.
-            </p>
-            <div className={styles.loadingDots}>
-              <span className={styles.loadingDot} />
-              <span className={styles.loadingDot} />
-              <span className={styles.loadingDot} />
-            </div>
           </div>
         )}
-
-        {/* ── ERROR STATE ─────────────────────────────────────── */}
-        {formState === "error" && (
-          <div className={styles.errorContainer}>
-            <div className={styles.errorIcon}>
-              <IoWarningOutline />
-            </div>
-            <p className={styles.errorMessage}>{errorMsg}</p>
-            <button
-              className={styles.retryButton}
-              onClick={() => setFormState("form")}
-              id="retry-btn"
-            >
-              Try Again
-            </button>
-          </div>
-        )}
-      </div>
-      )}
 
       {/* ── RESULT STATE ────────────────────────────────────── */}
       {formState === "result" && result && (
@@ -432,13 +428,12 @@ export default function HouseMastersPage() {
 
             {result.reasoning && (
               <p className={styles.resultReasoning}>
-                &ldquo;{result.reasoning}&rdquo;
+                &ldquo;{result.reasoning} Welcome House Master {name.split(" ")[0]}.&rdquo;
               </p>
             )}
 
             <p className={styles.resultNote}>
-              Your assignment is final. You will receive further instructions
-              from the Council.
+              You'll receive further instructions from the council. Goodluck!
             </p>
           </div>
         </div>

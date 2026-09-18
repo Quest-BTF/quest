@@ -3,6 +3,7 @@ import {
   EB_Garamond,
   Cormorant_Infant,
   Cinzel,
+  Cinzel_Decorative,
 } from "next/font/google";
 import "./globals.css";
 
@@ -28,6 +29,12 @@ const cormorant = Cormorant_Infant({
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const cinzelDecorative = Cinzel_Decorative({
+  variable: "--font-cinzel-decorative",
   subsets: ["latin"],
   weight: ["400", "700"],
 });
@@ -65,7 +72,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${garamond.variable} ${cormorant.variable} ${cinzel.variable}`}
+      className={`${outfit.variable} ${garamond.variable} ${cormorant.variable} ${cinzel.variable} ${cinzelDecorative.variable}`}
     >
       <body suppressHydrationWarning>{children}</body>
     </html>

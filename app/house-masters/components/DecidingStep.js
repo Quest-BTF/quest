@@ -18,15 +18,7 @@ export default function DecidingStep({
   return (
     <div className={styles.stepContent} key="step-5">
       <div className={styles.questionContainer}>
-        <div className={styles.crestPlaceholder}>
-          <Image
-            src="/images/questSeal.png"
-            alt="Quest Seal"
-            width={400}
-            height={400}
-            quality={100}
-          />
-        </div>
+
 
         <div style={{ textAlign: "center" }}>
           <p className={styles.questionLabel}>{q.labelPrefix}</p>
